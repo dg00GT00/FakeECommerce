@@ -1,4 +1,5 @@
 using System;
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddDbContext<StoreContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
@@ -51,13 +53,6 @@ namespace eCommerce
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.Use(async (context, next) =>
-            {
-                Console.WriteLine("RemotePort: {0}", context.Connection.RemotePort);
-                Console.WriteLine("LocalPort: {0}", context.Connection.LocalPort);
-                await next();
-            });
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
