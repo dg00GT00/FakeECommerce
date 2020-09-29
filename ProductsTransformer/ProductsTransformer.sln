@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsTransformer", "ProductsTransformer.csproj", "{68040438-2558-4494-94C6-3C5E378D5845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{F976442E-6287-41B8-92F2-9CFCA14D4C1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +15,9 @@ Global
 		{68040438-2558-4494-94C6-3C5E378D5845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68040438-2558-4494-94C6-3C5E378D5845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68040438-2558-4494-94C6-3C5E378D5845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F976442E-6287-41B8-92F2-9CFCA14D4C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F976442E-6287-41B8-92F2-9CFCA14D4C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F976442E-6287-41B8-92F2-9CFCA14D4C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F976442E-6287-41B8-92F2-9CFCA14D4C1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

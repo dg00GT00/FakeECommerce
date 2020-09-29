@@ -16,7 +16,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\SeedData" />
+    <Folder Include="Data\CourseSeedData" />
   </ItemGroup>
 
 </Project>

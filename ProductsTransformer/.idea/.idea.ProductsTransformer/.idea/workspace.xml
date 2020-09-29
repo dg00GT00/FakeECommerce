@@ -5,24 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e17497c8-1a57-477a-a750-b3ba3eb11a9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Core/Entities/BaseEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Core/Entities/ProductBrand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Core/Entities/ProductType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Core/Interfaces/IProductRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Infrastructure/Data/Config/ProductConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Infrastructure/Data/ProductRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/Class1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Core/Entities/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Core/Entities/Product.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Class1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/Migrations/20200924110420_InitialCreate.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/Migrations/20200924110420_InitialCreate.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/Migrations/StoreContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Data/Migrations/StoreContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/StoreContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Data/StoreContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BaseProducts.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CourseFakeProducts/CourseProducts.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakeProductsApi/BaseFakeProductsApi.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakeProductsApi/IFakeProductsAsync.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakeProductsApi/NewCourseProducts.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakeProductsApi/ProductsTypes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonServices/BaseJson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonServices/IStringJsonAsync.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonServices/StringJson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwapProducts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/SeedData/brands.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Data/CourseSeedData/brands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/SeedData/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Data/CourseSeedData/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Data/SeedData/types.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Data/CourseSeedData/types.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/Controllers/ProductsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/Controllers/ProductsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../eCommerce/eCommerce.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../eCommerce/eCommerce.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductsTransformer.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ProductsTransformer.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +37,71 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/BaseFakeProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApiService.cs" />
+        <option value="$PROJECT_DIR$/GererateJsonResponse.cs" />
+        <option value="$PROJECT_DIR$/GenerateJsonResponse.cs" />
+        <option value="$PROJECT_DIR$/IFakeProductsService.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsService.cs" />
+        <option value="$PROJECT_DIR$/ProductsTypes.cs" />
+        <option value="$PROJECT_DIR$/FakeClothsService.cs" />
+        <option value="$PROJECT_DIR$/FakeProductService.cs" />
+        <option value="$PROJECT_DIR$/BaseFakeProductsApi.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/GenerateJsonResponse.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts/BaseProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts/GetFakeProduct.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts/IFakeProducts.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/DeserializeJsonResponse.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts/ProductsTypes.cs" />
+        <option value="$PROJECT_DIR$/FakeProducts/BaseFakeProductsApi.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/ProductsTypes.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/IFakeProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/GetFakeProduct.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProducct.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProduct.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductAsync.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IJsonSream.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IJsonStream.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IJsonStreamAsync.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/JsonStreamAsync.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/JsonStream.cs" />
+        <option value="$PROJECT_DIR$/../Infrastructure/Data/CourseSeedData/newproducts.json" />
+        <option value="$PROJECT_DIR$/JsonServices/BaseJson.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/DeserializeJson.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/BaseProducts.cs" />
+        <option value="$PROJECT_DIR$/BaseProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/NewCourseProducts.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/BaseFakeProductsApi.cs" />
+        <option value="$PROJECT_DIR$/ProductsSwap.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/IFakeProductsAsync.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/SerializeJson.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IStringJsonAsync.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/StringJson.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" />
+        <option value="$PROJECT_DIR$/SwapProducts.cs" />
+        <option value="$PROJECT_DIR$/../Infrastructure/Data/NewCourseProduct/products.json" />
+        <option value="$PROJECT_DIR$/Program.cs" />
+        <option value="$PROJECT_DIR$/../Infrastructure/Data/NewCourseSeed/products.json" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/CourseProducts.cs" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1iBGaJuFjEbRBDCQ7jkDmwcskap" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -73,25 +141,57 @@
       <option name="presentableId" value="Default" />
       <updated>1601373633923</updated>
       <workItem from="1601373638669" duration="44000" />
+      <workItem from="1601382066891" duration="10614000" />
+      <workItem from="1601397955380" duration="4135000" />
+      <workItem from="1601404558804" duration="7038000" />
+      <workItem from="1601417571282" duration="5161000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1920" height="309" key="GridCell.Tab.0.bottom" timestamp="1601422580994">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="309" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601422580994" />
+    <state width="1920" height="309" key="GridCell.Tab.0.center" timestamp="1601422580992">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="309" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601422580992" />
+    <state width="1920" height="309" key="GridCell.Tab.0.left" timestamp="1601422580991">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="309" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601422580991" />
+    <state width="1920" height="309" key="GridCell.Tab.0.right" timestamp="1601422580993">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="309" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601422580993" />
     <state x="455" y="212" key="Rider.ProjectTemplateDialog.Size" timestamp="1601373634169">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="455" y="212" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1080@0.0.1920.1080" timestamp="1601373634169" />
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1601373679314">
+    <state x="715" y="182" width="513" height="751" key="RiderGenerateDialog" timestamp="1601417702855">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601373679314" />
+    <state x="715" y="182" width="513" height="751" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1601417702855" />
+    <state width="623" height="498" key="SwitcherDM" timestamp="1601386397209">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="623" height="498" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1601386397209" />
+    <state width="750" height="535" key="javadoc.popup" timestamp="1601418868959">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="750" height="535" key="javadoc.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601418868959" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1601418024720">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601418024720" />
   </component>
 </project>
