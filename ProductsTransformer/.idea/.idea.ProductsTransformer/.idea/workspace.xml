@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e17497c8-1a57-477a-a750-b3ba3eb11a9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProductsTransformer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FakeProductsApi/IFakeProductsAsync.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FakeProductsApi/IFakeProductsAsync.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JsonServices/BaseJson.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JsonServices/IStringJsonAsync.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JsonServices/IStringJsonAsync.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JsonServices/StringJson.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JsonServices/StringJson.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwapProducts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwapProducts.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +20,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Gledson &lt;duarte.gledson@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///home/dggt/RiderProjects/eCommerce/ProductsTransformer/CourseFakeProducts/GetCourseFakeProductsAsync.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/dggt/RiderProjects/eCommerce/ProductsTransformer/FakeProductsApi/GetFakeProductAsync.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/dggt/RiderProjects/eCommerce/ProductsTransformer/JsonServices/JsonSerializerManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/dggt/RiderProjects/eCommerce/ProductsTransformer/JsonServices/IJsonSerializer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -67,17 +78,17 @@
         <option value="$PROJECT_DIR$/ProductsSwap.cs" />
         <option value="$PROJECT_DIR$/FakeProductsApi/IFakeProductsAsync.cs" />
         <option value="$PROJECT_DIR$/JsonServices/SerializeJson.cs" />
-        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" />
         <option value="$PROJECT_DIR$/../Infrastructure/Data/NewCourseProduct/products.json" />
         <option value="$PROJECT_DIR$/CourseFakeProducts/CourseProducts.cs" />
         <option value="$PROJECT_DIR$/JsonServices/IStringJsonAsync.cs" />
-        <option value="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" />
         <option value="$PROJECT_DIR$/JsonServices/StringJson.cs" />
-        <option value="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" />
-        <option value="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" />
-        <option value="$PROJECT_DIR$/Program.cs" />
-        <option value="$PROJECT_DIR$/../Infrastructure/Data/NewCourseSeed/products.json" />
         <option value="$PROJECT_DIR$/SwapProducts.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/IJsonSerializer.cs" />
+        <option value="$PROJECT_DIR$/CourseFakeProducts/GetCourseFakeProductsAsync.cs" />
+        <option value="$PROJECT_DIR$/FakeProductsApi/GetFakeProductAsync.cs" />
+        <option value="$PROJECT_DIR$/Program.cs" />
+        <option value="$PROJECT_DIR$/JsonServices/JsonSerializerManager.cs" />
+        <option value="$PROJECT_DIR$/../Infrastructure/Data/NewCourseSeed/products.json" />
       </list>
     </option>
   </component>
@@ -129,8 +140,17 @@
       <workItem from="1601397955380" duration="4135000" />
       <workItem from="1601404558804" duration="7038000" />
       <workItem from="1601417571282" duration="5347000" />
-      <workItem from="1601423986071" duration="1784000" />
+      <workItem from="1601423986071" duration="2061000" />
+      <workItem from="1601459997276" duration="2361000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed seed generator product to write new products">
+      <created>1601426031140</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601426031140</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,26 +158,44 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Fixed seed generator product to write new products" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed seed generator product to write new products" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1920" height="309" key="GridCell.Tab.0.bottom" timestamp="1601425688791">
+    <state x="385" y="68" width="1139" height="950" key="CommitChangelistDialog2" timestamp="1601426030822">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1920" height="309" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601425688791" />
-    <state width="1920" height="309" key="GridCell.Tab.0.center" timestamp="1601425688790">
+    <state x="385" y="68" width="1139" height="950" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1601426030822" />
+    <state width="1920" height="309" key="GridCell.Tab.0.bottom" timestamp="1601461644782">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1920" height="309" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601425688790" />
-    <state width="1920" height="309" key="GridCell.Tab.0.left" timestamp="1601425688790">
+    <state width="1920" height="309" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601461644782" />
+    <state width="1920" height="309" key="GridCell.Tab.0.center" timestamp="1601461644781">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1920" height="309" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601425688790" />
-    <state width="1920" height="309" key="GridCell.Tab.0.right" timestamp="1601425688791">
+    <state width="1920" height="309" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601461644781" />
+    <state width="1920" height="309" key="GridCell.Tab.0.left" timestamp="1601461644781">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1920" height="309" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601425688791" />
+    <state width="1920" height="309" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601461644781" />
+    <state width="1920" height="309" key="GridCell.Tab.0.right" timestamp="1601461644782">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="309" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601461644782" />
     <state x="455" y="212" key="Rider.ProjectTemplateDialog.Size" timestamp="1601373634169">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -170,13 +208,13 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="623" height="498" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1601424548165" />
-    <state width="750" height="535" key="javadoc.popup" timestamp="1601418868959">
+    <state width="750" height="535" key="javadoc.popup" timestamp="1601460485375">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="750" height="535" key="javadoc.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601418868959" />
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1601418024720">
+    <state width="750" height="535" key="javadoc.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601460485375" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1601462582818">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601418024720" />
+    <state x="539" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601462582818" />
   </component>
 </project>

@@ -13,16 +13,17 @@ namespace ProductsTransformer
 
         static async Task Main(string[] args)
         {
-            var jsonAsync = new StringJson<CourseProducts>(new JsonSerializerManager<CourseProducts>());
-            var courseProducts = new GetCourseFakeProductsAsync<CourseProducts>(jsonAsync)
+            var jsCourseProducts = new JsonSerializerManager<CourseProducts>();
+            var jsonAsync = new StringJson<CourseProducts>(jsCourseProducts);
+            var courseProducts = new GetCourseFakeProductsAsync<CourseProducts>(jsCourseProducts, jsonAsync)
             {
                 JsonFilePath = BasePath + "CourseSeedData/products.json"
             };
             using var newCourseProducts =
-                new GetFakeProductAsync<NewCourseProducts>(new BaseFakeProductsApi(), new HttpClient())
-                {
-                    ProductsType = ProductsTypes.Cloth
-                };
+                new GetFakeProductAsync<NewCourseProducts>(
+                    new JsonSerializerManager<NewCourseProducts>(),
+                    new BaseFakeProductsApi(),
+                    new HttpClient());
             var ps = new SwapProducts(courseProducts, newCourseProducts, jsonAsync);
             await ps.Swap(GenerateJsonFile());
         }

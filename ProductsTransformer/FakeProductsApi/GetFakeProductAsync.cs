@@ -7,17 +7,20 @@ using ProductsTransformer.JsonServices;
 namespace ProductsTransformer.FakeProductsApi
 {
     public class GetFakeProductAsync<T> :
-        JsonSerializerManager<T>,
         IFakeProductsAsync<T>,
         IDisposable where T : BaseProducts
     {
+        private readonly IJsonSerializer<T> _jsonSerializer;
         private readonly BaseFakeProductsApi _productsApi;
         private readonly HttpClient _httpClient;
 
-        public ProductsTypes ProductsType { get; set; }
+        public ProductsTypes ProductsType { get; set; } = ProductsTypes.Cloth;
 
-        public GetFakeProductAsync(BaseFakeProductsApi productsApi, HttpClient httpClient)
+        public GetFakeProductAsync(IJsonSerializer<T> jsonSerializer,
+            BaseFakeProductsApi productsApi,
+            HttpClient httpClient)
         {
+            _jsonSerializer = jsonSerializer;
             _productsApi = productsApi;
             _httpClient = httpClient;
         }
@@ -26,14 +29,14 @@ namespace ProductsTransformer.FakeProductsApi
         {
             var productUri = _productsApi.UriByProductType(ProductsType);
             var products = await _httpClient.GetStringAsync(productUri);
-            return GenerateArray(products);
+            return _jsonSerializer.GenerateArray(products);
         }
 
         public async Task<T> GetProductAsync(int id)
         {
             var productUri = _productsApi.UriByProductType(ProductsType, id);
             var product = await _httpClient.GetStringAsync(productUri);
-            return GenerateSingle(product);
+            return _jsonSerializer.GenerateSingle(product);
         }
 
         public void Dispose()

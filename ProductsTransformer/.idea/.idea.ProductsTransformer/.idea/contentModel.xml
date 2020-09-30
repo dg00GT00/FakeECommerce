@@ -51,7 +51,6 @@
         <e p="ProductsTypes.cs" t="Include" />
       </e>
       <e p="JsonServices" t="Include">
-        <e p="BaseJson.cs" t="Include" />
         <e p="IJsonSerializer.cs" t="Include" />
         <e p="IStringJsonAsync.cs" t="Include" />
         <e p="JsonSerializerManager.cs" t="Include" />
