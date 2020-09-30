@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ProductsTransformer.JsonServices;
@@ -21,7 +22,7 @@ namespace ProductsTransformer.FakeProductsApi
             _httpClient = httpClient;
         }
 
-        public async Task<T[]> GetProductsAsync()
+        public async Task<IEnumerable<T>> GetProductsAsync()
         {
             var productUri = _productsApi.UriByProductType(ProductsType);
             var products = await _httpClient.GetStringAsync(productUri);

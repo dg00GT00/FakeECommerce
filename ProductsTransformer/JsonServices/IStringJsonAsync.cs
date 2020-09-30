@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProductsTransformer.JsonServices
@@ -7,6 +8,6 @@ namespace ProductsTransformer.JsonServices
         Task<string> ReadAsync(string jsonSource);
         Task WriteAsync(string jsonDestination, string json);
 
-        Task WriteAsync(string jsonDestination, T[] products);
+        Task WriteAsync(string jsonDestination, IEnumerable<T> products);
     }
 }

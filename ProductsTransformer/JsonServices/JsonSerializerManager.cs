@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using System.Text.Json;
-using ProductsTransformer.FakeProductsApi;
 
 namespace ProductsTransformer.JsonServices
 {
     public class JsonSerializerManager<T> : BaseJson, IJsonSerializer<T> where T : BaseProducts
     {
-        public T[] GenerateArray(string jsonResponse)
+        public IEnumerable<T> GenerateArray(string jsonResponse)
         {
             return JsonSerializer.Deserialize<T[]>(jsonResponse, JsonOptions);
         }
@@ -15,7 +15,7 @@ namespace ProductsTransformer.JsonServices
             return JsonSerializer.Serialize(obj, JsonOptions);
         }
         
-        public string GenerateString(T[] obj)
+        public string GenerateString(IEnumerable<T> obj)
         {
             return JsonSerializer.Serialize(obj, JsonOptions);
         }

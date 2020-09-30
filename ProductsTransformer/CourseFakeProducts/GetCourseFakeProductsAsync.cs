@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProductsTransformer.FakeProductsApi;
 using ProductsTransformer.JsonServices;
@@ -15,7 +16,7 @@ namespace ProductsTransformer.CourseFakeProducts
             _stringJsonAsync = stringJsonAsync;
         }
 
-        public async Task<T[]> GetProductsAsync()
+        public async Task<IEnumerable<T>> GetProductsAsync()
         {
             var json = await _stringJsonAsync.ReadAsync(JsonFilePath);
             return GenerateArray(json);

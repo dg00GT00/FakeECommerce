@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using ProductsTransformer.CourseFakeProducts;
 using ProductsTransformer.FakeProductsApi;
@@ -25,18 +26,15 @@ namespace ProductsTransformer
         {
             var courseProducts = await _courseProducts.GetProductsAsync();
             var newCourseProducts = await _newCourseProducts.GetProductsAsync();
-            foreach (var cp in courseProducts)
+            var result = courseProducts.Zip(newCourseProducts, (cp, ncp) =>
             {
-                foreach (var ncp in newCourseProducts)
-                {
-                    cp.Name = ncp.Title;
-                    cp.Description = ncp.Description;
-                    cp.Price = ncp.Price;
-                    cp.PictureUrl = ncp.Image;
-                }
-            }
-
-            await _jsonAsync.WriteAsync(newJsonFilePath, courseProducts);
+                cp.Name = ncp.Title;
+                cp.Description = ncp.Description;
+                cp.Price = ncp.Price;
+                cp.PictureUrl = ncp.Image;
+                return cp;
+            });
+            await _jsonAsync.WriteAsync(newJsonFilePath, result);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ProductsTransformer
             {
                 JsonFilePath = BasePath + "CourseSeedData/products.json"
             };
-            var newCourseProducts =
+            using var newCourseProducts =
                 new GetFakeProductAsync<NewCourseProducts>(new BaseFakeProductsApi(), new HttpClient())
                 {
                     ProductsType = ProductsTypes.Cloth

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace ProductsTransformer.JsonServices
             }
         }
 
-        public async Task WriteAsync(string jsonDestination, T[] products)
+        public async Task WriteAsync(string jsonDestination, IEnumerable<T> products)
         {
             var jsonProducts = _jsonSerializer.GenerateString(products);
             await WriteAsync(jsonDestination, jsonProducts);
