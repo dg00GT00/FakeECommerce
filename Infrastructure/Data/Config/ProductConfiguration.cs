@@ -9,7 +9,7 @@ namespace Infrastructure.Data.Config
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.Property(product => product.Name).IsRequired().HasMaxLength(100);
-            builder.Property(product => product.Description).IsRequired().HasMaxLength(100);
+            builder.Property(product => product.Description).IsRequired();
             builder.Property(product => product.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(product => product.PictureUrl).IsRequired();
         }

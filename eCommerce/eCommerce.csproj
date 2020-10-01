@@ -5,7 +5,7 @@
         <UserSecretsId>70a736e1-fe2c-46ee-966c-f84b6ae0b505</UserSecretsId>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -22,7 +22,7 @@ namespace ProductsTransformer
             _jsonAsync = jsonAsync;
         }
 
-        public async Task Swap(string newJsonFilePath)
+        public async Task SwapAsync(string newJsonFilePath)
         {
             var courseProducts = await _courseProducts.GetProductsAsync();
             var newCourseProducts = await _newCourseProducts.GetProductsAsync();

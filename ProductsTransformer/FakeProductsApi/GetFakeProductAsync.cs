@@ -16,7 +16,8 @@ namespace ProductsTransformer.FakeProductsApi
 
         public ProductsTypes ProductsType { get; set; } = ProductsTypes.Cloth;
 
-        public GetFakeProductAsync(IJsonSerializer<T> jsonSerializer,
+        public GetFakeProductAsync(
+            IJsonSerializer<T> jsonSerializer,
             BaseFakeProductsApi productsApi,
             HttpClient httpClient)
         {

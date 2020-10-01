@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ProductsTransformer.JsonServices
 {
-    public interface IJsonSerializer<T> where T : BaseProducts
+    public interface IJsonSerializer<T> where T : class
     {
         public JsonSerializerOptions JsonOptions { get; set; }
         public string GenerateString(IEnumerable<T> obj);

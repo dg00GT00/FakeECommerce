@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ProductsTransformer.JsonServices
 {
-    public class JsonSerializerManager<T> : IJsonSerializer<T> where T : BaseProducts
+    public class JsonSerializerManager<T> : IJsonSerializer<T> where T : class
     {
         public JsonSerializerOptions JsonOptions { get; set; } = new JsonSerializerOptions
             {PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
