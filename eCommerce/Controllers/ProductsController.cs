@@ -28,7 +28,7 @@ namespace eCommerce.Controllers
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _repo.GetProductByIdAsync(id);
-            return product is null ? (ActionResult<Product>) NotFound(id) : Ok(product);
+            return product is null ? (ActionResult<Product>) NotFound() : Ok(product);
         }
     }
 }
