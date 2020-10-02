@@ -23,7 +23,7 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddProductRepositories();
+            services.AddProductRepository();
             services.AddDbContext<StoreContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));

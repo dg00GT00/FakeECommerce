@@ -6,12 +6,9 @@ namespace eCommerce.RepositoryServices
 {
     public static class RepositoryExtensions
     {
-        public static IServiceCollection AddProductRepositories(this IServiceCollection s)
+        public static IServiceCollection AddProductRepository(this IServiceCollection s)
         {
-            s.AddScoped<IProductRepository, ProductRepository>();
-            s.AddScoped<IProductBrandRepository, ProductBrandRepository>();
-            s.AddScoped<IProductTypeRepository, ProductTypeRepository>();
-            return s;
+            return s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
     }
 }
