@@ -1,4 +1,6 @@
+using System.Linq;
 using AutoMapper;
+using eCommerce.Errors;
 using eCommerce.Helpers;
 using eCommerce.Middleware;
 using eCommerce.RepositoryServices;
@@ -6,6 +8,7 @@ using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +43,21 @@ namespace eCommerce
                     options.HeaderName = "X-XSRF-TOKEN";
                 }
             );
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = context =>
+                {
+                    var errors = context.ModelState
+                        .Where(pair => pair.Value.Errors.Count > 0)
+                        .SelectMany(pair => pair.Value.Errors)
+                        .Select(error => error.ErrorMessage).ToArray();
+                    var errorResponse = new ApiValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+                    return new BadRequestObjectResult(errorResponse);
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +66,7 @@ namespace eCommerce
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
-            
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
