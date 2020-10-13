@@ -25,6 +25,7 @@ namespace eCommerce.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
         {
             var spec = new ProductsWithTypesAndBrandsSpecification();
