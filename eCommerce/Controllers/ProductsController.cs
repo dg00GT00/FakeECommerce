@@ -9,9 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _repo;
         private readonly IMapper _mapper;

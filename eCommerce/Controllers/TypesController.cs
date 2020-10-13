@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TypesController : ControllerBase
+    public class TypesController : BaseApiController
     {
         private readonly IGenericRepository<ProductType> _repo;
 
