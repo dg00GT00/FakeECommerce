@@ -8,7 +8,8 @@ namespace eCommerce.RepositoryServices
     {
         public static IServiceCollection AddProductRepository(this IServiceCollection s)
         {
-            return s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            return s;
         }
     }
 }
