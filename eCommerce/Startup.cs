@@ -1,18 +1,14 @@
-using System.Linq;
 using AutoMapper;
-using eCommerce.Errors;
+using eCommerce.Extensions;
 using eCommerce.Helpers;
 using eCommerce.Middleware;
-using eCommerce.RepositoryServices;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 namespace eCommerce
 {
@@ -29,7 +25,6 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddProductRepository();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(options =>
             {
@@ -44,25 +39,10 @@ namespace eCommerce
                     options.HeaderName = "X-XSRF-TOKEN";
                 }
             );
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = context =>
-                {
-                    var errors = context.ModelState
-                        .Where(pair => pair.Value.Errors.Count > 0)
-                        .SelectMany(pair => pair.Value.Errors)
-                        .Select(error => error.ErrorMessage).ToArray();
-                    var errorResponse = new ApiValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-                    return new BadRequestObjectResult(errorResponse);
-                };
-            });
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo {Title = "FakeeCommerce", Version = "v1"});
-            });
+
+            services.AddSwaggerDocumentation();
+            // This service must be located at the end of the service pipeline
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,9 +58,7 @@ namespace eCommerce
 
             app.UseAuthorization();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "FakeeCommerce API v1"));
-
+            app.UseSwaggerDocumentation();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
