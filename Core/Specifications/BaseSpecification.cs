@@ -11,7 +11,6 @@ namespace Core.Specifications
 
         public IEnumerable<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
 
-
         public BaseSpecification(Expression<Func<T, bool>> criteria = null)
         {
             Criteria = criteria;

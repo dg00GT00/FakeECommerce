@@ -1,3 +1,5 @@
+using AutoMapper;
+using eCommerce.Helpers;
 using eCommerce.RepositoryServices;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +26,7 @@ namespace eCommerce
         {
             services.AddControllers();
             services.AddProductRepository();
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
