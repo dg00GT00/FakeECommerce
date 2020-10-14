@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
-using Core.Specifications;
 using eCommerce.Dtos;
 using eCommerce.Errors;
 using eCommerce.Models;
+using eCommerce.Specifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,10 +27,9 @@ namespace eCommerce.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
-            [FromQuery(Name = "sortBy")] SortModel sort,
-            int? brandId, int? typeId)
+            [FromQuery] ProductSpecParamsModel productParamsModel)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification(sort.SortProperty, brandId, typeId);
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParamsModel);
             var products = await _repo.ListAsync(spec);
             var mappedProducts = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
             return Ok(mappedProducts);
@@ -45,7 +44,7 @@ namespace eCommerce.Controllers
             var product = await _repo.GetEntityWithSpec(spec);
             var mappedProduct = _mapper.Map<Product, ProductToReturnDto>(product);
             return mappedProduct is null
-                ? (ActionResult<Product>) NotFound(new ApiResponse((int)HttpStatusCode.NotFound))
+                ? (ActionResult<Product>) NotFound(new ApiResponse((int) HttpStatusCode.NotFound))
                 : Ok(mappedProduct);
         }
     }
