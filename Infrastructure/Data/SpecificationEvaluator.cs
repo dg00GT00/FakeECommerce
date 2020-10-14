@@ -25,6 +25,12 @@ namespace Infrastructure.Data
                 query = query.OrderByDescending(spec.OrderByDescending);
             }
 
+            // The pagination spec should be add at the end of specification pipeline
+            if (spec.IsPagingEnabled)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
+            }
+
             query = spec.Includes.Aggregate(query, (entities, expression) => entities.Include(expression));
             return query;
         }

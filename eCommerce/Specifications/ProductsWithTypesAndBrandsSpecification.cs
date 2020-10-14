@@ -1,33 +1,35 @@
 using System;
 using Core.Entities;
 using Core.Enums;
+using eCommerce.Models;
 
-namespace Core.Specifications
+namespace eCommerce.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification(SortBy sort, int? brandId, int? typeId) : base(product =>
-                (!brandId.HasValue || product.ProductBrandId == brandId) &&
-                (!typeId.HasValue || product.ProductTypeId == typeId)
+        public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel) : base(product =>
+                (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
+                (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId)
             )
         {
             IncludeSpecification();
-            switch (sort)
+            var sortSortProperty = productParamsModel.Sort;
+            switch (sortSortProperty)
             {
-                case SortBy.PriceAscending:
+                case SortBy.PriceAsc:
                     AddOrderBy(p => p.Price);
                     break;
-                case SortBy.PriceDescending:
+                case SortBy.PriceDesc:
                     AddOrderByDescending(p => p.Price);
                     break;
-                case SortBy.NameAscending:
+                case SortBy.NameAsc:
                     AddOrderBy(product => product.Name);
                     break;
-                case SortBy.NameDescending:
+                case SortBy.NameDesc:
                     AddOrderByDescending(product => product.Name);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(sort), sort, null);
+                    throw new ArgumentOutOfRangeException(nameof(sortSortProperty), sortSortProperty, null);
             }
         }
 

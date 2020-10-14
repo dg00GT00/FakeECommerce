@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Core.Interfaces;
 
-namespace Core.Specifications
+namespace eCommerce.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {
+        public int Take { get; private set; }
+        
+        public int Skip { get; private set; }
+        
+        public bool IsPagingEnabled { get; private set; }
         public Expression<Func<T, bool>> Criteria { get; }
 
         public IEnumerable<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
@@ -33,6 +38,13 @@ namespace Core.Specifications
         protected void AddOrderByDescending(Expression<Func<T, object>> orderByDescExpression)
         {
             OrderByDescending = orderByDescExpression;
+        }
+
+        protected void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
         }
     }
 }
