@@ -26,9 +26,11 @@ namespace eCommerce.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery(Name = "sortBy")] SortModel sort)
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
+            [FromQuery(Name = "sortBy")] SortModel sort,
+            int? brandId, int? typeId)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification(sort.SortProperty);
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort.SortProperty, brandId, typeId);
             var products = await _repo.ListAsync(spec);
             var mappedProducts = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
             return Ok(mappedProducts);

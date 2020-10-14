@@ -6,7 +6,10 @@ namespace Core.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification(SortBy sort)
+        public ProductsWithTypesAndBrandsSpecification(SortBy sort, int? brandId, int? typeId) : base(product =>
+                (!brandId.HasValue || product.ProductBrandId == brandId) &&
+                (!typeId.HasValue || product.ProductTypeId == typeId)
+            )
         {
             IncludeSpecification();
             switch (sort)
