@@ -7,6 +7,7 @@ using Core.Interfaces;
 using Core.Specifications;
 using eCommerce.Dtos;
 using eCommerce.Errors;
+using eCommerce.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,6 @@ namespace eCommerce.Controllers
     {
         private readonly IGenericRepository<Product> _repo;
         private readonly IMapper _mapper;
-        private readonly HttpContext _context;
 
         public ProductsController(IGenericRepository<Product> repo, IMapper mapper)
         {
@@ -26,9 +26,9 @@ namespace eCommerce.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery(Name = "sortBy")] SortModel sort)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort.SortProperty);
             var products = await _repo.ListAsync(spec);
             var mappedProducts = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
             return Ok(mappedProducts);
