@@ -8,11 +8,12 @@ namespace eCommerce.Specifications
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
         public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel) : base(product =>
-                (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
-                (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId)
-            )
+            (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
+            (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId)
+        )
         {
             IncludeSpecification();
+            ApplyPaging(productParamsModel.PageSize * (productParamsModel.PageIndex - 1), productParamsModel.PageSize);
             var sortSortProperty = productParamsModel.Sort;
             switch (sortSortProperty)
             {

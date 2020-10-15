@@ -6,6 +6,7 @@ using Core.Entities;
 using Core.Interfaces;
 using eCommerce.Dtos;
 using eCommerce.Errors;
+using eCommerce.Helpers;
 using eCommerce.Models;
 using eCommerce.Specifications;
 using Microsoft.AspNetCore.Http;
@@ -26,13 +27,17 @@ namespace eCommerce.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParamsModel productParamsModel)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(productParamsModel);
+            var countSpec = new ProductWithFiltersForCountSpecification(productParamsModel);
+            var totalItems = await _repo.CountAsync(countSpec);
             var products = await _repo.ListAsync(spec);
             var mappedProducts = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
-            return Ok(mappedProducts);
+            return Ok(new Pagination<ProductToReturnDto>(
+                productParamsModel.PageIndex, productParamsModel.PageSize, totalItems, mappedProducts
+                ));
         }
 
         [HttpGet("{id}")]
