@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using Core.Entities;
 using Core.Enums;
 using eCommerce.Models;
@@ -7,12 +8,9 @@ namespace eCommerce.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel) : base(product =>
-            (string.IsNullOrEmpty(productParamsModel.Search) || product.Name.ToLower().Contains(productParamsModel.Search)) &&
-            (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
-            (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId)
-        )
+        public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel)
         {
+            Criteria = BaseCriteria(productParamsModel);
             IncludeSpecification();
             ApplyPaging(productParamsModel.PageSize * (productParamsModel.PageIndex - 1), productParamsModel.PageSize);
             var sortSortProperty = productParamsModel.Sort;
@@ -40,6 +38,15 @@ namespace eCommerce.Specifications
             IncludeSpecification();
         }
 
+        private static Expression<Func<Product, bool>> BaseCriteria(ProductSpecParamsModel productParamsModel)
+        {
+            return product =>
+                (string.IsNullOrEmpty(productParamsModel.Search) ||
+                 product.Name.ToLower().Contains(productParamsModel.Search)) &&
+                (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
+                (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId);
+        }
+        
         private void IncludeSpecification()
         {
             AddInclude(product => product.ProductType);

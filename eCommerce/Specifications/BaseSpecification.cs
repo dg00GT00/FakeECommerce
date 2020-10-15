@@ -12,7 +12,7 @@ namespace eCommerce.Specifications
         public int Skip { get; private set; }
         
         public bool IsPagingEnabled { get; private set; }
-        public Expression<Func<T, bool>> Criteria { get; }
+        public Expression<Func<T, bool>> Criteria { get; protected set; }
 
         public IEnumerable<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
 
