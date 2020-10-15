@@ -41,6 +41,14 @@ namespace eCommerce
             );
 
             services.AddSwaggerDocumentation();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                    {
+                        // Cors to React application
+                        builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+                    });
+            });
             // This service must be located at the end of the service pipeline
             services.AddApplicationServices();
         }
@@ -56,6 +64,8 @@ namespace eCommerce
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+            
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();

@@ -8,6 +8,7 @@ namespace eCommerce.Specifications
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
         public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel) : base(product =>
+            (string.IsNullOrEmpty(productParamsModel.Search) || product.Name.ToLower().Contains(productParamsModel.Search)) &&
             (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
             (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId)
         )
