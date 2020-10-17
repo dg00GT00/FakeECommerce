@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AssemblyName>FakeProductsProvider</AssemblyName>
+        <RootNamespace>FakeProductsProvider</RootNamespace>
+        <PackageId>FakeProductsProvider</PackageId>
+        <Authors>FakeProductsProvider</Authors>
+        <Description>Transform existante JSON products into new ones but with new values. It also retrieves fake products from different sources and serialize them into JSON shape</Description>
+        <Company>FakeProductsProvider</Company>
+        <Product>FakeProductsProvider</Product>
+    </PropertyGroup>
+
+</Project>

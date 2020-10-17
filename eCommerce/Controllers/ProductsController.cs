@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Entities;
@@ -43,14 +44,21 @@ namespace eCommerce.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
             var product = await _repo.GetEntityWithSpec(spec);
             var mappedProduct = _mapper.Map<Product, ProductToReturnDto>(product);
             return mappedProduct is null
-                ? (ActionResult<Product>) NotFound(new ApiResponse((int) HttpStatusCode.NotFound))
+                ? (ActionResult<ProductToReturnDto>) NotFound(new ApiResponse((int) HttpStatusCode.NotFound))
                 : Ok(mappedProduct);
+        }
+
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        public async ActionResult<ProductToReturnDto> PostProduct(ProductToReturnDto productDto)
+        {
+            
         }
     }
 }

@@ -26,6 +26,7 @@ namespace eCommerce
         {
             services.AddControllers();
             services.AddAutoMapper(typeof(MappingProfiles));
+            services.AddHttpClient();
             services.AddDbContext<StoreContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
@@ -45,7 +46,7 @@ namespace eCommerce
             {
                 options.AddPolicy("CorsPolicy", builder =>
                     {
-                        // Cors to React application
+                        // Cors to frontend React application
                         builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
                     });
             });
@@ -69,6 +70,7 @@ namespace eCommerce
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
