@@ -1,13 +1,15 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProductsTransformer.FakeProductsApi;
-using ProductsTransformer.JsonServices;
+using FakeProductsProvider.FakeProductsApi;
+using FakeProductsProvider.JsonServices;
 
-namespace ProductsTransformer.FakeProductsProvider
+namespace FakeProductsProvider.MoreFakeProducts
 {
     public class GetMoreFakeProductsAsync<T> : GetFakeProductAsync<T> where T : BaseProducts
     {
-        public GetMoreFakeProductsAsync(IJsonSerializer<T> jsonSerializer, BaseFakeProductsApi productsApi,
+        public GetMoreFakeProductsAsync(
+            IJsonSerializer<T> jsonSerializer, 
+            BaseFakeProductsApi productsApi,
             HttpClient httpClient) : base(jsonSerializer, productsApi, httpClient)
         {
         }

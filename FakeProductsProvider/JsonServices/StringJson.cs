@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductsTransformer.JsonServices
+namespace FakeProductsProvider.JsonServices
 {
     public class StringJson<T> : IStringJsonAsync<T> where T : BaseProducts
     {

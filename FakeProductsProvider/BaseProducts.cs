@@ -1,4 +1,4 @@
-namespace ProductsTransformer
+namespace FakeProductsProvider
 {
     public class BaseProducts
     {

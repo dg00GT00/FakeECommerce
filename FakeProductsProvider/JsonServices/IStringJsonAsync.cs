@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProductsTransformer.JsonServices
+namespace FakeProductsProvider.JsonServices
 {
     public interface IStringJsonAsync<T> where T : BaseProducts
     {

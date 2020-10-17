@@ -2,22 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ProductsTransformer.FakeProductsApi;
-using ProductsTransformer.JsonServices;
+using FakeProductsProvider.FakeProductsApi;
+using FakeProductsProvider.JsonServices;
 
-namespace ProductsTransformer.CourseFakeProducts
+namespace FakeProductsProvider.CourseFakeProducts
 {
     public class GetCourseFakeProductsAsync<T> : IFakeProductsAsync<T> where T : BaseProducts
     {
-        public string JsonFilePath { get; set; }
+        public string JsonFilePath { get;}
         private readonly IJsonSerializer<T> _jsonSerializer;
         private readonly IStringJsonAsync<T> _stringJsonAsync;
 
-        public GetCourseFakeProductsAsync(IJsonSerializer<T> jsonSerializer,
-            IStringJsonAsync<T> stringJsonAsync)
+        public GetCourseFakeProductsAsync(
+            IJsonSerializer<T> jsonSerializer,
+            IStringJsonAsync<T> stringJsonAsync,
+            string jsonFilePath)
         {
             _jsonSerializer = jsonSerializer;
             _stringJsonAsync = stringJsonAsync;
+            JsonFilePath = jsonFilePath;
         }
 
         public async Task<IEnumerable<T>> GetProductsAsync()

@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using ProductsTransformer.CourseFakeProducts;
-using ProductsTransformer.FakeProductsApi;
-using ProductsTransformer.JsonServices;
+using FakeProductsProvider.CourseFakeProducts;
+using FakeProductsProvider.FakeProductsApi;
+using FakeProductsProvider.JsonServices;
 
-namespace ProductsTransformer
+namespace FakeProductsProvider
 {
     public class SwapProducts
     {

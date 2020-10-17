@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProductsTransformer.JsonServices;
+using FakeProductsProvider.JsonServices;
+using ProductsTransformer.FakeProductsApi;
 
-namespace ProductsTransformer.FakeProductsApi
+namespace FakeProductsProvider.FakeProductsApi
 {
     public class GetFakeProductAsync<T> :
         IFakeProductsAsync<T>,

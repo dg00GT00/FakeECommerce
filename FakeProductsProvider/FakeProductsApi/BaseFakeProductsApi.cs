@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ProductsTransformer.FakeProductsApi;
 
-namespace ProductsTransformer.FakeProductsApi
+namespace FakeProductsProvider.FakeProductsApi
 {
     public abstract class BaseFakeProductsApi
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 
-namespace ProductsTransformer.JsonServices
+namespace FakeProductsProvider.JsonServices
 {
     public class JsonSerializerManager<T> : IJsonSerializer<T> where T : class
     {

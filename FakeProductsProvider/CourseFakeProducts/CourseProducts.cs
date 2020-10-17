@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ProductsTransformer.CourseFakeProducts
+namespace FakeProductsProvider.CourseFakeProducts
 {
     public class CourseProducts : BaseProducts
     {

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
-using ProductsTransformer.CourseFakeProducts;
-using ProductsTransformer.FakeProductsApi;
-using ProductsTransformer.JsonServices;
+using FakeProductsProvider.CourseFakeProducts;
+using FakeProductsProvider.JsonServices;
 
-namespace ProductsTransformer
+namespace FakeProductsProvider
 {
     class Program
     {
@@ -18,7 +14,7 @@ namespace ProductsTransformer
         {
             var json = await File.ReadAllTextAsync(GenerateJsonFile("NewCourseSeedData"));
             var jsonSerializerType = typeof(JsonSerializerManager<>).MakeGenericType(typeof(CourseProducts));
-            dynamic jsonSerializer = Activator.CreateInstance(jsonSerializerType);
+            dynamic? jsonSerializer = Activator.CreateInstance(jsonSerializerType);
             var products = jsonSerializer?.GenerateArray(json);
             // var genProductArray = jsonSerializer.GetMethod("GenerateArray");
             // var products = genProductArray?.Invoke(jsonSerializer, new[] {json});
