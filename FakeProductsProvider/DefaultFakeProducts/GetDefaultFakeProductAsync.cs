@@ -43,7 +43,7 @@ namespace FakeProductsProvider.DefaultFakeProducts
 
         public void Dispose()
         {
-            HttpClient?.Dispose();
+            HttpClient.Dispose();
         }
     }
 }
