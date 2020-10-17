@@ -28,7 +28,7 @@ namespace FakeProductsProvider
             //     JsonFilePath = BasePath + "CourseSeedData/products.json"
             // };
             // using var newCourseProducts =
-            //     new GetFakeProductAsync<NewCourseProducts>(
+            //     new GetDefaultFakeProductAsync<NewCourseProducts>(
             //         new JsonSerializerManager<NewCourseProducts>(),
             //         new BaseFakeProductsApi(),
             //         new HttpClient());

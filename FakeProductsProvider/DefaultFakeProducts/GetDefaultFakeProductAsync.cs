@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FakeProductsProvider.FakeProductsApi;
 using FakeProductsProvider.JsonServices;
-using ProductsTransformer.FakeProductsApi;
 
-namespace FakeProductsProvider.FakeProductsApi
+namespace FakeProductsProvider.DefaultFakeProducts
 {
-    public class GetFakeProductAsync<T> :
+    public class GetDefaultFakeProductAsync<T> :
         IFakeProductsAsync<T>,
         IDisposable where T : BaseProducts
     {
@@ -17,7 +17,7 @@ namespace FakeProductsProvider.FakeProductsApi
 
         public ProductsTypes ProductsType { get; set; } = ProductsTypes.Cloth;
 
-        public GetFakeProductAsync(
+        public GetDefaultFakeProductAsync(
             IJsonSerializer<T> jsonSerializer,
             BaseFakeProductsApi productsApi,
             HttpClient httpClient)

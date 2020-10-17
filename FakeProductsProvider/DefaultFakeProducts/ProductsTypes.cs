@@ -1,4 +1,4 @@
-namespace ProductsTransformer.FakeProductsApi
+namespace FakeProductsProvider.DefaultFakeProducts
 {
     public enum ProductsTypes
     {

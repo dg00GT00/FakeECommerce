@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FakeProductsProvider.CourseFakeProducts;
+using FakeProductsProvider.DefaultFakeProducts;
 using FakeProductsProvider.FakeProductsApi;
 using FakeProductsProvider.JsonServices;
 

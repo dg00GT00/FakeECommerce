@@ -1,4 +1,4 @@
-namespace FakeProductsProvider.FakeProductsApi
+namespace FakeProductsProvider.DefaultFakeProducts
 {
     public class NewCourseProducts : BaseProducts
     {
