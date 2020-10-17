@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FakeProductsProvider.FakeProductsApi;
+using FakeProductsProvider.BaseFakeProductsApi;
 using FakeProductsProvider.JsonServices;
 
 namespace FakeProductsProvider.DefaultFakeProducts
@@ -12,14 +12,14 @@ namespace FakeProductsProvider.DefaultFakeProducts
         IDisposable where T : BaseProducts
     {
         protected readonly IJsonSerializer<T> JsonSerializer;
-        protected readonly BaseFakeProductsApi ProductsApi;
+        protected readonly BaseFakeProductsApi.BaseFakeProductsApi ProductsApi;
         protected readonly HttpClient HttpClient;
 
         public ProductsTypes ProductsType { get; set; } = ProductsTypes.Cloth;
 
         public GetDefaultFakeProductAsync(
             IJsonSerializer<T> jsonSerializer,
-            BaseFakeProductsApi productsApi,
+            BaseFakeProductsApi.BaseFakeProductsApi productsApi,
             HttpClient httpClient)
         {
             JsonSerializer = jsonSerializer;

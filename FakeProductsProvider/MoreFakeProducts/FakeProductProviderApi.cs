@@ -1,8 +1,6 @@
-using FakeProductsProvider.FakeProductsApi;
-
 namespace FakeProductsProvider.MoreFakeProducts
 {
-    public class FakeProductProviderApi : BaseFakeProductsApi
+    public class FakeProductProviderApi : BaseFakeProductsApi.BaseFakeProductsApi
     {
     }
 }

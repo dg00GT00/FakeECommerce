@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using FakeProductsProvider.DefaultFakeProducts;
-using FakeProductsProvider.FakeProductsApi;
 using FakeProductsProvider.JsonServices;
 
 namespace FakeProductsProvider.MoreFakeProducts
@@ -10,7 +9,7 @@ namespace FakeProductsProvider.MoreFakeProducts
     {
         public GetDefaultMoreFakeProductsAsync(
             IJsonSerializer<T> jsonSerializer, 
-            BaseFakeProductsApi productsApi,
+            BaseFakeProductsApi.BaseFakeProductsApi productsApi,
             HttpClient httpClient) : base(jsonSerializer, productsApi, httpClient)
         {
         }

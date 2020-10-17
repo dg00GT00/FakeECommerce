@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FakeProductsProvider.DefaultFakeProducts;
 
-namespace FakeProductsProvider.FakeProductsApi
+namespace FakeProductsProvider.BaseFakeProductsApi
 {
     
     /// <summary>

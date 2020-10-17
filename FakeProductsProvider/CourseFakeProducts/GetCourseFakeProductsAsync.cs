@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using FakeProductsProvider.FakeProductsApi;
+using FakeProductsProvider.BaseFakeProductsApi;
 using FakeProductsProvider.JsonServices;
 
 namespace FakeProductsProvider.CourseFakeProducts

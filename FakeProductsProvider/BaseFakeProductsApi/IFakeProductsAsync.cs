@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FakeProductsProvider.FakeProductsApi
+namespace FakeProductsProvider.BaseFakeProductsApi
 {
     public interface IFakeProductsAsync<T> where T : BaseProducts
     {
