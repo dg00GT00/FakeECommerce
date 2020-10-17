@@ -10,7 +10,6 @@ using Core.Entities;
 using Infrastructure.DataExtensions;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
-using ProductsTransformer.JsonServices;
 
 namespace Infrastructure.Data
 {
@@ -49,6 +48,7 @@ namespace Infrastructure.Data
                     {
                         productEntity!.Add(item);
                     }
+
                     await context.SqlServerSaveChangesAsync(dbName);
                 }
             }
