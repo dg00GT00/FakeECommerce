@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ProductsTransformer.FakeProductsApi
 {
-    public class BaseFakeProductsApi
+    public abstract class BaseFakeProductsApi
     {
-        protected static string BaseUri { get; } = "https://fakestoreapi.com";
+        public string BaseUri { get; } = "https://fakestoreapi.com";
 
-        private static string GenerateUri(IEnumerable<string> pathArray)
+        private string GenerateUri(IEnumerable<string> pathArray)
         {
             var builder = new StringBuilder(BaseUri);
             foreach (var p in pathArray)

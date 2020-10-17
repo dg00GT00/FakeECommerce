@@ -7,7 +7,6 @@ namespace ProductsTransformer.JsonServices
     {
         Task<string> ReadAsync(string jsonSource);
         Task WriteAsync(string jsonDestination, string json);
-
         Task WriteAsync(string jsonDestination, IEnumerable<T> products);
     }
 }

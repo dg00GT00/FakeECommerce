@@ -10,9 +10,9 @@ namespace ProductsTransformer.FakeProductsApi
         IFakeProductsAsync<T>,
         IDisposable where T : BaseProducts
     {
-        private readonly IJsonSerializer<T> _jsonSerializer;
-        private readonly BaseFakeProductsApi _productsApi;
-        private readonly HttpClient _httpClient;
+        protected readonly IJsonSerializer<T> JsonSerializer;
+        protected readonly BaseFakeProductsApi ProductsApi;
+        protected readonly HttpClient HttpClient;
 
         public ProductsTypes ProductsType { get; set; } = ProductsTypes.Cloth;
 
@@ -21,28 +21,28 @@ namespace ProductsTransformer.FakeProductsApi
             BaseFakeProductsApi productsApi,
             HttpClient httpClient)
         {
-            _jsonSerializer = jsonSerializer;
-            _productsApi = productsApi;
-            _httpClient = httpClient;
+            JsonSerializer = jsonSerializer;
+            ProductsApi = productsApi;
+            HttpClient = httpClient;
         }
 
         public async Task<IEnumerable<T>> GetProductsAsync()
         {
-            var productUri = _productsApi.UriByProductType(ProductsType);
-            var products = await _httpClient.GetStringAsync(productUri);
-            return _jsonSerializer.GenerateArray(products);
+            var productUri = ProductsApi.UriByProductType(ProductsType);
+            var products = await HttpClient.GetStringAsync(productUri);
+            return JsonSerializer.GenerateArray(products);
         }
 
         public async Task<T> GetProductAsync(int id)
         {
-            var productUri = _productsApi.UriByProductType(ProductsType, id);
-            var product = await _httpClient.GetStringAsync(productUri);
-            return _jsonSerializer.GenerateSingle(product);
+            var productUri = ProductsApi.UriByProductType(ProductsType, id);
+            var product = await HttpClient.GetStringAsync(productUri);
+            return JsonSerializer.GenerateSingle(product);
         }
 
         public void Dispose()
         {
-            _httpClient?.Dispose();
+            HttpClient?.Dispose();
         }
     }
 }
