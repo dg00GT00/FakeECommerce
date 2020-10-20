@@ -3,10 +3,10 @@ using System.IO;
 using System.Threading.Tasks;
 using FakeProductsProvider;
 using FakeProductsProvider.JsonServices;
-using Tests.BaseSourceTests;
+using Tests.FakeProductsProviderTests.BaseSourceTests;
 using Xunit;
 
-namespace Tests
+namespace Tests.FakeProductsProviderTests
 {
     public class StringJsonTests : DefaultJsonSerializer, IDisposable
     {

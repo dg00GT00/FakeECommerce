@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using FakeProductsProvider;
 using FakeProductsProvider.BaseFakeProductsApi;
 using FakeProductsProvider.DefaultFakeProducts;
-using Tests.BaseSourceTests;
+using Tests.FakeProductsProviderTests.BaseSourceTests;
 using Xunit;
 
-namespace Tests
+namespace Tests.FakeProductsProviderTests
 {
     public class DefaultFakeProductsTests : DefaultJsonSerializer, IDisposable
     {

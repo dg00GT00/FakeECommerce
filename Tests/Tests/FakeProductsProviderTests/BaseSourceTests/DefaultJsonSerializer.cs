@@ -1,7 +1,7 @@
 using FakeProductsProvider;
 using FakeProductsProvider.JsonServices;
 
-namespace Tests.BaseSourceTests
+namespace Tests.FakeProductsProviderTests.BaseSourceTests
 {
     public class DefaultJsonSerializer
     {

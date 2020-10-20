@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using FakeProductsProvider;
 using FakeProductsProvider.BaseFakeProductsApi;
 
-namespace Tests.BaseSourceTests
+namespace Tests.FakeProductsProviderTests.BaseSourceTests
 {
     public class GetTestBaseProduct<T> : IFakeProductsAsync<T> where T : BaseProducts
     {
