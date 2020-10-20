@@ -1,5 +1,8 @@
 namespace FakeProductsProvider
 {
+    /// <summary>
+    /// The default base product for all fake products class providers
+    /// </summary>
     public class BaseProducts
     {
         public string Title { get; set; }

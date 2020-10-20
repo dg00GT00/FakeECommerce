@@ -7,6 +7,10 @@ using FakeProductsProvider.JsonServices;
 
 namespace FakeProductsProvider.DefaultFakeProducts
 {
+    /// <summary>
+    /// Retrieves the default implementation of the fake products web api
+    /// </summary>
+    /// <typeparam name="T">Either BaseProduct class or derived</typeparam>
     public class GetDefaultFakeProductAsync<T> :
         IFakeProductsAsync<T>,
         IDisposable where T : BaseProducts
@@ -27,6 +31,10 @@ namespace FakeProductsProvider.DefaultFakeProducts
             HttpClient = httpClient;
         }
 
+        /// <summary>
+        /// Gets a list of fake products
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<T>> GetProductsAsync()
         {
             var productUri = ProductsApi.UriByProductType(ProductsType);
@@ -34,6 +42,11 @@ namespace FakeProductsProvider.DefaultFakeProducts
             return JsonSerializer.GenerateArray(products);
         }
 
+        /// <summary>
+        /// Gets a single product by its id
+        /// </summary>
+        /// <param name="id">The id from the fake product web api</param>
+        /// <returns></returns>
         public async Task<T> GetProductAsync(int id)
         {
             var productUri = ProductsApi.UriByProductType(ProductsType, id);

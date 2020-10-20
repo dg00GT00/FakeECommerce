@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
+using FakeProductsProvider.JsonServices;
 using Infrastructure.DataExtensions;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;

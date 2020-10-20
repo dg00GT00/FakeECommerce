@@ -5,9 +5,9 @@ using FakeProductsProvider.JsonServices;
 
 namespace FakeProductsProvider.MoreFakeProducts
 {
-    public class GetDefaultMoreFakeProductsAsync<T> : GetDefaultFakeProductAsync<T> where T : BaseProducts
+    public class GetMoreFakeProductsAsync<T> : GetDefaultFakeProductAsync<T> where T : BaseProducts
     {
-        public GetDefaultMoreFakeProductsAsync(
+        public GetMoreFakeProductsAsync(
             IJsonSerializer<T> jsonSerializer, 
             BaseFakeProductsApi.BaseFakeProductsApi productsApi,
             HttpClient httpClient) : base(jsonSerializer, productsApi, httpClient)
