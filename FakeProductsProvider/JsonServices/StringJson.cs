@@ -21,7 +21,7 @@ namespace FakeProductsProvider.JsonServices
         /// <summary>
         /// Reads from a json file to screen
         /// </summary>
-        /// <param name="jsonSource"></param>
+        /// <param name="jsonSource">The json file source</param>
         /// <returns></returns>
         public async Task<string> ReadAsync(string jsonSource)
         {
@@ -54,7 +54,7 @@ namespace FakeProductsProvider.JsonServices
         /// <summary>
         /// Writes a base products collection to a json destination file
         /// </summary>
-        /// <param name="jsonDestination">The json destination fileee</param>
+        /// <param name="jsonDestination">The json destination file</param>
         /// <param name="products">A base products collection</param>
         /// <returns></returns>
         public async Task WriteAsync(string jsonDestination, IEnumerable<T> products)
