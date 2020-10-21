@@ -49,7 +49,7 @@ namespace Tests.FakeProductsProviderTests
             var stringJson = await _sut.ReadAsync(_tempJsonFile);
             // Assert
             Assert.Equal(
-                JsonSerializer.GenerateString(new[] {sampleProductObj}).Trim(), 
+                JsonSerializer.GenerateString(new[] {sampleProductObj}).Trim(),
                 stringJson.Trim());
         }
 
