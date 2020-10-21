@@ -40,6 +40,7 @@ namespace eCommerce
                 {
                     webBuilder.ConfigureKestrel((context, options) =>
                     {
+                        // Configuration comes from user-secrets
                         var certificateConfig = context.Configuration.GetSection("Certificate");
                         var certFileName = certificateConfig["FileName"];
                         var certPassword = certificateConfig["Password"];

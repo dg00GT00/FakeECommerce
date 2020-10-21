@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Entities;
@@ -54,11 +53,11 @@ namespace eCommerce.Controllers
                 : Ok(mappedProduct);
         }
 
-        [HttpPost]
-        [Consumes(MediaTypeNames.Application.Json)]
-        public async ActionResult<ProductToReturnDto> PostProduct(ProductToReturnDto productDto)
-        {
-            
-        }
+        // [HttpPost]
+        // [Consumes(MediaTypeNames.Application.Json)]
+        // public async ActionResult<ProductToReturnDto> PostProduct(ProductToReturnDto productDto)
+        // {
+        //     
+        // }
     }
 }
