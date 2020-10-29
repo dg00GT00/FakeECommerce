@@ -14,8 +14,6 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FakeProductsProvider\FakeProductsProvider.csproj" />
     <ProjectReference Include="..\..\eCommerce\eCommerce.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 </Project>
