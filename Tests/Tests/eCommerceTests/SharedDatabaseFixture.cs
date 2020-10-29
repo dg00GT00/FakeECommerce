@@ -10,26 +10,28 @@ namespace Tests.eCommerceTests
     {
         public DbConnection Connection { get; }
 
-        private TestDatabaseUtils DbUtils { get; } = new TestDatabaseUtils();
+        public int SeedEntries { get; set; } = 3;
+
+        private SQLServerTestsUtils DbUtils { get; } = new SQLServerTestsUtils();
 
         public SharedDatabaseFixture()
         {
-            Connection = new SqlConnection(DbUtils.GetConnectionString());
-            Seed(3);
+            Connection = new SqlConnection(DbUtils.GetSqlServerConnectionString());
+            Seed();
             Connection.Open();
         }
 
         /// <summary>
         /// Charges the test database with seeding data based on number of entries
         /// </summary>
-        /// <param name="seedEntries">The of items that a table in test database should have</param>
-        private void Seed(int seedEntries)
+        private void Seed()
         {
             using var context = CreateContext();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-            var testProductList = DbUtils.SeedFactory(seedEntries);
+            var testProductList = DbUtils.SqlServerSeedFactory(SeedEntries);
             context.AddRange(testProductList);
+            context.SaveChanges();
         }
 
         public StoreContext CreateContext(DbTransaction transaction = null)
@@ -42,7 +44,6 @@ namespace Tests.eCommerceTests
 
             return context;
         }
-
 
         public void Dispose()
         {
