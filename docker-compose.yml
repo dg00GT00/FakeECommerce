@@ -5,6 +5,7 @@ services:
     environment:
       MSSQL_SA_PASSWORD:
       ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
     hostname: sql1
     container_name: sql1
     ports:
