@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  sqlservertests:
+    build:
+      context: .
+    environment:
+      MSSQL_SA_PASSWORD: "12345Testing_"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express" # Remove the MSSQL_PID env line if needed the "Development" SQL Server version
+      SQLSERVER_CONFIG_PWD: "/usr/testsconfig" 
+    hostname: sqltests
+    container_name: sqltests
+    ports:
+      - 1434:1433
