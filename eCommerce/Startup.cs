@@ -29,7 +29,7 @@ namespace eCommerce
             services.AddHttpClient();
             services.AddDbContext<StoreContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
+                options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
             });
             services.AddAntiforgery(
                 options =>
@@ -45,10 +45,10 @@ namespace eCommerce
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
-                    {
-                        // Cors to frontend React application
-                        builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
-                    });
+                {
+                    // Cors to frontend React application
+                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+                });
             });
             // This service must be located at the end of the service pipeline
             services.AddApplicationServices();
@@ -66,11 +66,11 @@ namespace eCommerce
             app.UseRouting();
 
             app.UseCors("CorsPolicy");
-            
+
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
-            
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
