@@ -1,16 +1,16 @@
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities;
 using eCommerce.Controllers;
 using Infrastructure.Data.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace Tests.eCommerceTests.TestsControllers
 {
-    public class BrandsControllerTests : IClassFixture<SharedDatabaseFixture>, IDisposable
+    public class BrandsControllerTests : IClassFixture<SharedDatabaseFixture>
     {
         private readonly SharedDatabaseFixture _fixture;
-
         private readonly GenericRepository<ProductBrand> _brandRepo;
 
         public BrandsControllerTests(SharedDatabaseFixture fixture)
@@ -20,16 +20,17 @@ namespace Tests.eCommerceTests.TestsControllers
         }
 
         [Fact]
-        public async Task GetProductBrand_ShouldReturnAListOfProductBrand()
+        public async Task GetProductBrandAsync_ShouldReturnAListOfProductBrand()
         {
+            // Arrange
             var sut = new BrandsController(_brandRepo);
-            var brandList = (await sut.GetProductBrand()).Value;
-            Assert.Equal(_fixture.SeedEntries, brandList.Count);
-        }
-
-        public void Dispose()
-        {
-            _fixture.Dispose();
+            // Act
+            var productBrand = await sut.GetProductBrand();
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<IReadOnlyList<ProductBrand>>>(productBrand);
+            var productBrandList =
+                Assert.IsAssignableFrom<IReadOnlyList<ProductBrand>>(((OkObjectResult) actionResult.Result).Value);
+            Assert.Equal(_fixture.SeedEntries, productBrandList.Count);
         }
     }
 }
