@@ -1,8 +1,8 @@
 using System;
 using System.Data.Common;
 using Infrastructure.Data;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Tests.eCommerceTests
 {
@@ -12,11 +12,11 @@ namespace Tests.eCommerceTests
 
         public int SeedEntries { get; set; } = 3;
 
-        private SQLServerTestsUtils DbUtils { get; } = new SQLServerTestsUtils();
+        private PostgresTestsUtils DbUtils { get; } = new PostgresTestsUtils();
 
         public SharedDatabaseFixture()
         {
-            Connection = new SqlConnection(DbUtils.GetSqlServerConnectionString());
+            Connection = new NpgsqlConnection(DbUtils.GetSqlServerConnectionString());
             Seed();
             Connection.Open();
         }
@@ -38,9 +38,12 @@ namespace Tests.eCommerceTests
         {
             var context = new StoreContext(
                 new DbContextOptionsBuilder<StoreContext>()
-                    .UseSqlServer(Connection).Options
+                    .UseNpgsql(Connection).Options
             );
-            context.Database.UseTransaction(transaction);
+            if (transaction != null)
+            {
+                context.Database.UseTransaction(transaction);
+            }
 
             return context;
         }

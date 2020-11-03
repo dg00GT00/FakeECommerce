@@ -7,7 +7,7 @@ namespace Tests.eCommerceTests
     /// <summary>
     /// Test database collection utilities
     /// </summary>
-    public class SQLServerTestsUtils
+    public class PostgresTestsUtils
     {
         /// <summary>
         /// Retrieves a connection string from user-secrets provider
@@ -18,7 +18,7 @@ namespace Tests.eCommerceTests
             var config = new ConfigurationBuilder()
                 .AddUserSecrets("4e5bdf0c-9af0-4f39-9b5e-7c9da7ba3dc6")
                 .Build();
-            return config["ConnectionStrings:TestsDatabase"];
+            return config.GetConnectionString("TestsDatabase");
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Tests.eCommerceTests
         /// </summary>
         /// <param name="seedEntries">The number of entries that products list should have</param>
         /// <returns>A list of products</returns>
-        public List<Product> SqlServerSeedFactory(int seedEntries)
+        public IEnumerable<Product> SqlServerSeedFactory(int seedEntries)
         {
             var productList = new List<Product>();
             for (int i = 0; i < seedEntries; i++)
