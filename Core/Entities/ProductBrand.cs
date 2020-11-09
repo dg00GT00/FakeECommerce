@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Core.Entities.BaseEntities;
 
 namespace Core.Entities
 {
     [Table("ProductBrand", Schema = "Dev")]
-    public class ProductBrand : BaseProductBrand
+    public class ProductBrand : BaseEntity
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
