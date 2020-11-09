@@ -40,7 +40,7 @@ namespace eCommerce.Middleware
 
                 var jsonOptions = new JsonSerializerOptions {PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
 
-                var json = JsonSerializer.Serialize(response, jsonOptions);
+                var json = JsonSerializer.Serialize(errorResponse, jsonOptions);
                 await context.Response.WriteAsync(json);
             }
         }

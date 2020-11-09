@@ -1,6 +1,6 @@
 using AutoMapper;
+using Core.Dtos;
 using Core.Entities;
-using eCommerce.Dtos;
 
 namespace eCommerce.Helpers
 {
