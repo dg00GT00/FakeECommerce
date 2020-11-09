@@ -3,9 +3,9 @@ using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Dtos;
 using Core.Entities;
 using Core.Interfaces;
-using eCommerce.Dtos;
 using eCommerce.Errors;
 using eCommerce.Helpers;
 using eCommerce.Models;
@@ -22,7 +22,7 @@ namespace eCommerce.Controllers
         private readonly IMapper _mapper;
 
         public ProductsController(
-            IGetRepository<Product> getRepo, 
+            IGetRepository<Product> getRepo,
             IPostRepository<Product> postRepo,
             IMapper mapper)
         {
@@ -59,11 +59,14 @@ namespace eCommerce.Controllers
                 : Ok(mappedProduct);
         }
 
-        // [HttpPost]
-        // [Consumes(MediaTypeNames.Application.Json)]
-        // public async ActionResult<ProductToReturnDto> PostProduct(ProductToReturnDto productDto)
-        // {
-        //     
-        // }
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ProductToInsertionDto>> PostProduct(ProductToInsertionDto productDto)
+        {
+            var product = _mapper.Map<ProductToInsertionDto, Product>(productDto);
+            var insertedProduct = await _postRepo.InsertEntityAsync(product);
+            return CreatedAtAction(nameof(GetProduct), new {insertedProduct.Id}, insertedProduct);
+        }
     }
 }

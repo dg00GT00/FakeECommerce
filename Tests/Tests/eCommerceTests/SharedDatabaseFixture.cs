@@ -16,7 +16,7 @@ namespace Tests.eCommerceTests
 
         public SharedDatabaseFixture()
         {
-            Connection = new NpgsqlConnection(DbUtils.GetPostgresConnectionString());
+            Connection = new NpgsqlConnection(DbUtils.GetSqlServerConnectionString());
             Seed();
             Connection.Open();
         }
@@ -29,7 +29,7 @@ namespace Tests.eCommerceTests
             using var context = CreateContext();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-            var testProductList = DbUtils.PostgresSeedFactory(SeedEntries);
+            var testProductList = DbUtils.SqlServerSeedFactory(SeedEntries);
             context.AddRange(testProductList);
             context.SaveChanges();
         }
