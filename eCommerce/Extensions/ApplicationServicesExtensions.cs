@@ -1,6 +1,7 @@
 using System.Linq;
 using Core.Interfaces;
 using eCommerce.Errors;
+using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace eCommerce.Extensions
         {
             s.AddScoped(typeof(IGetRepository<>), typeof(GetRepository<>));
             s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
+            s.AddScoped<IBasketRepository, BasketRepository>();
             // It reformat some possible Model state errors in order to complaint to ApiResponse implementation
             s.Configure<ApiBehaviorOptions>(options =>
             {
