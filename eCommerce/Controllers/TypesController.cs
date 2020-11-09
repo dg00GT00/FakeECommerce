@@ -9,9 +9,9 @@ namespace eCommerce.Controllers
 {
     public class TypesController : BaseApiController
     {
-        private readonly IGenericRepository<ProductType> _repo;
+        private readonly IGetRepository<ProductType> _repo;
 
-        public TypesController(IGenericRepository<ProductType> repo)
+        public TypesController(IGetRepository<ProductType> repo)
         {
             _repo = repo;
         }
@@ -20,7 +20,7 @@ namespace eCommerce.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductsTypesAsync()
         {
-            return Ok(await _repo.ListAllAsync());
+            return Ok(await _repo.ListAllEntitiesAsync());
         }
     }
 }

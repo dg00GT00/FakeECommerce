@@ -1,13 +1,14 @@
 using System.Linq;
 using Core.Entities;
+using Core.Entities.BaseEntities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
+    public static class SpecEvaluator<TEntity> where TEntity : BaseEntity
     {
-        public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> inputQuery, ISpecification<TEntity> spec)
+        public static IQueryable<TEntity> QueryBuilder(IQueryable<TEntity> inputQuery, ISpecification<TEntity> spec)
         {
             var query = inputQuery;
             if (spec.Criteria != null)
@@ -19,7 +20,7 @@ namespace Infrastructure.Data
             {
                 query = query.OrderBy(spec.OrderBy);
             }
-            
+
             if (spec.OrderByDescending != null)
             {
                 query = query.OrderByDescending(spec.OrderByDescending);

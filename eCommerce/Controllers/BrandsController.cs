@@ -9,9 +9,9 @@ namespace eCommerce.Controllers
 {
     public class BrandsController : BaseApiController
     {
-        private readonly IGenericRepository<ProductBrand> _repo;
+        private readonly IGetRepository<ProductBrand> _repo;
 
-        public BrandsController(IGenericRepository<ProductBrand> repo)
+        public BrandsController(IGetRepository<ProductBrand> repo)
         {
             _repo = repo;
         }
@@ -20,7 +20,7 @@ namespace eCommerce.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrand()
         {
-            return Ok(await _repo.ListAllAsync());
+            return Ok(await _repo.ListAllEntitiesAsync());
         }
     }
 }

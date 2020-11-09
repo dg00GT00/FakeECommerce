@@ -34,9 +34,9 @@ namespace Tests.eCommerceTests.TestsControllers
             // Act
             var products = await _sut.GetProducts(paramsModel);
             // Assert
-            var actionResult = Assert.IsType<ActionResult<Pagination<ProductToReturnDto>>>(products);
+            var actionResult = Assert.IsType<ActionResult<Pagination<ProductDto>>>(products);
             var productList =
-                Assert.IsType<Pagination<ProductToReturnDto>>(((OkObjectResult) actionResult.Result).Value);
+                Assert.IsType<Pagination<ProductDto>>(((OkObjectResult) actionResult.Result).Value);
             Assert.Equal(_fixture.SeedEntries, productList.Count);
         }
 
@@ -51,8 +51,8 @@ namespace Tests.eCommerceTests.TestsControllers
             // Act
             var productById = await _sut.GetProduct(id);
             // Assert
-            var actionResult = Assert.IsType<ActionResult<ProductToReturnDto>>(productById);
-            var product = Assert.IsType<ProductToReturnDto>(((OkObjectResult) actionResult.Result).Value);
+            var actionResult = Assert.IsType<ActionResult<ProductDto>>(productById);
+            var product = Assert.IsType<ProductDto>(((OkObjectResult) actionResult.Result).Value);
             Assert.Equal(id, product.Id);
             Assert.Equal($"Name_{testId}", product.Name);
             Assert.Equal($"Description_{testId}", product.Description);
@@ -69,7 +69,7 @@ namespace Tests.eCommerceTests.TestsControllers
             // Act
             var notFoundProduct = await _sut.GetProduct(1000);
             // Assert
-            var notFoundResult = Assert.IsAssignableFrom<ActionResult<ProductToReturnDto>>(notFoundProduct);
+            var notFoundResult = Assert.IsAssignableFrom<ActionResult<ProductDto>>(notFoundProduct);
             var apiResponse = Assert.IsType<ApiResponse>(((NotFoundObjectResult) notFoundResult.Result).Value);
             Assert.True(HttpStatusCode.NotFound == (HttpStatusCode) apiResponse.StatusCode);
             Assert.Equal("Resource found, it was not", apiResponse.Message);
@@ -79,7 +79,7 @@ namespace Tests.eCommerceTests.TestsControllers
         {
             var mapConfig = new MapperConfiguration(expression =>
             {
-                expression.CreateMap<Product, ProductToReturnDto>();
+                expression.CreateMap<Product, ProductDto>();
                 expression.AddProfile<MappingProfiles>();
             });
             var mapper = new Mapper(mapConfig);

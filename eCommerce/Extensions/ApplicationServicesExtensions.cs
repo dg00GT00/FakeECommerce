@@ -17,7 +17,9 @@ namespace eCommerce.Extensions
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection s)
         {
-            s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            s.AddScoped(typeof(IGetRepository<>), typeof(GetRepository<>));
+            s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
+            // It reformat some possible Model state errors in order to complaint to ApiResponse implementation
             s.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>
