@@ -11,7 +11,7 @@ namespace eCommerce.Specifications
         public ProductsWithTypesAndBrandsSpecification(ProductSpecParamsModel productParamsModel)
         {
             Criteria = BaseCriteria(productParamsModel);
-            IncludeSpecification();
+            IncludeReferenceSpec();
             ApplyPaging(productParamsModel.PageSize * (productParamsModel.PageIndex - 1), productParamsModel.PageSize);
             var sortSortProperty = productParamsModel.Sort;
             switch (sortSortProperty)
@@ -35,7 +35,7 @@ namespace eCommerce.Specifications
 
         public ProductsWithTypesAndBrandsSpecification(int id) : base(product => product.Id == id)
         {
-            IncludeSpecification();
+            IncludeReferenceSpec();
         }
 
         private static Expression<Func<Product, bool>> BaseCriteria(ProductSpecParamsModel productParamsModel)
@@ -46,8 +46,8 @@ namespace eCommerce.Specifications
                 (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
                 (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId);
         }
-        
-        private void IncludeSpecification()
+
+        private void IncludeReferenceSpec()
         {
             AddInclude(product => product.ProductType);
             AddInclude(product => product.ProductBrand);
