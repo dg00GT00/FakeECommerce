@@ -1,16 +1,21 @@
 version: "3.8"
 services:
-  sqlserverdev:
-    image: "mcr.microsoft.com/mssql/server:2019-latest"
+  ePostgres:
+    image: "postgres:latest"
     environment:
-      MSSQL_SA_PASSWORD:
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"
-    hostname: sql1
-    container_name: sql1
-    ports:
-      - 1433:1433
+      POSTGRES_PASSWORD: eCommerce2020
+      POSTGRES_DB: DevDatabase
     volumes:
-      - sqldevvolume:/var/opt/mssql
-volumes:
-  sqldevvolume:
+      - $HOME/PostgresVolumes/eCommerce:/var/lib/postgresql/data
+    container_name: postgresCommerce
+    ports:
+      - 5432:5432
+  eRedis:
+    image: "redis:latest"
+    container_name: eCommerceRedis
+    ports:
+      - 6379:6379
+    deploy:
+      restart_policy:
+        condition: on-failure
+      
