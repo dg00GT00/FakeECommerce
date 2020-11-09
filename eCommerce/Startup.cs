@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 namespace eCommerce
 {
@@ -25,8 +26,13 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddHttpClient();
+            services.AddSingleton<ConnectionMultiplexer>(provider =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
