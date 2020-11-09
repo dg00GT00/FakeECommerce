@@ -34,7 +34,7 @@ namespace eCommerce.Middleware
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
 
-                var response = _env.IsDevelopment()
+                var errorResponse = _env.IsDevelopment()
                     ? new ApiException((int) HttpStatusCode.InternalServerError, e.Message, e.StackTrace)
                     : new ApiException((int) HttpStatusCode.InternalServerError);
 
