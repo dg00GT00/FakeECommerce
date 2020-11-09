@@ -34,7 +34,6 @@ namespace eCommerce.Controllers
         public ActionResult GetServerError()
         {
             var thing = _context.Products.Find(42);
-            thing.ToString();
             return Ok(thing);
         }
 
