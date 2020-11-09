@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
 {
+    /// <summary>
+    /// Non-production controller.
+    /// Only for testing error message formats
+    /// </summary>
     public class BuggyController : BaseApiController
     {
         private readonly StoreContext _context;

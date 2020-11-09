@@ -6,12 +6,23 @@ namespace eCommerce.Errors
 
         public string Message { get; set; }
 
+        /// <summary>
+        /// Wraps all controller responses in order to format them 
+        /// </summary>
+        /// <param name="statusCode">the response status code</param>
+        /// <param name="message">an optional message</param>
         public ApiResponse(int statusCode, string message = null)
         {
             StatusCode = statusCode;
             Message = message ?? GetDefaultMessageForStatusCode(statusCode);
         }
 
+        /// <summary>
+        /// Specifies some default error messages according with predefined response
+        /// status codes
+        /// </summary>
+        /// <param name="statusCode">the status codes to display a message for</param>
+        /// <returns>the message specific to a status code</returns>
         private static string GetDefaultMessageForStatusCode(in int statusCode)
         {
             return statusCode switch
