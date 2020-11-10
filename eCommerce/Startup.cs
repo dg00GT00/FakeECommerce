@@ -27,7 +27,7 @@ namespace eCommerce
         {
             services.AddControllers();
             services.AddHttpClient();
-            services.AddSingleton<ConnectionMultiplexer>(provider =>
+            services.AddSingleton<IConnectionMultiplexer>(provider =>
             {
                 var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
                 return ConnectionMultiplexer.Connect(configuration);

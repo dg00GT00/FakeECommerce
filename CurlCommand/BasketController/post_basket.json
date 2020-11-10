@@ -1,0 +1,14 @@
+{
+  "id": "basket1",
+  "item": [
+    {
+      "id": 17,
+      "productName": "Angular Purple Boots",
+      "price": 150,
+      "quantity": 1,
+      "pictureUrl": "https://localhost:5001/images/products/boot-ang2.png",
+      "brand": "Angular",
+      "type": "Boots"
+    }
+  ]
+}
