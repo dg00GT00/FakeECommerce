@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities.Identity
 {
+    [Table("Address", Schema = "Dev")]
     public class Address
     {
         public int Id { get; set; }
