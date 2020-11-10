@@ -3,6 +3,7 @@ using eCommerce.Extensions;
 using eCommerce.Helpers;
 using eCommerce.Middleware;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,7 +36,13 @@ namespace eCommerce
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(options =>
             {
+                // Connection strings comes from User secrets
                 options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
+            });
+            services.AddDbContext<AppIdentityDbContext>(builder =>
+            {
+                // Connection strings comes from User secrets
+                builder.UseNpgsql(Configuration.GetConnectionString("IdentityConnection"));
             });
             services.AddAntiforgery(
                 options =>
