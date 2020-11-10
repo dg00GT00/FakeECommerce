@@ -8,5 +8,4 @@ curl \
 -d "@$input" \
 -H 'Content-Type: application/json; charset=UTF-8' \
 --cacert ~/LocalHostCertificate/myCA.pem \
---http2 -v "https://localhost:5001/api/basket" \
-| python3 -m json.tool | echo
+--http2 -v "https://localhost:5001/api/basket" | python3 -m json.tool | echo
