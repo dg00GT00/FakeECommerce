@@ -27,7 +27,6 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHttpClient();
             services.AddSingleton<IConnectionMultiplexer>(provider =>
             {
                 var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
@@ -59,7 +58,7 @@ namespace eCommerce
             {
                 options.AddPolicy("CorsPolicy", builder =>
                 {
-                    // Cors to frontend React application
+                    // Cors to front-end React application
                     builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
                 });
             });

@@ -31,6 +31,7 @@ namespace eCommerce
                     logger.LogError(e, "An error occured during migration");
                 }
             }
+
             await host.RunAsync();
         }
 
@@ -39,20 +40,29 @@ namespace eCommerce
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureKestrel((context, options) =>
-                    {
-                        // Configuration comes from user-secrets
-                        var certificateConfig = context.Configuration.GetSection("Certificate");
-                        var certFileName = certificateConfig["FileName"];
-                        var certPassword = certificateConfig["Password"];
-                        // Configure the Url and ports to bind to
-                        // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
-                        // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
-                        options.ListenLocalhost(5001, listenOptions =>
                         {
-                            listenOptions.UseHttps(certFileName, certPassword);
-                            listenOptions.Protocols = HttpProtocols.Http2;
+                            // Configuration comes from user-secrets
+                            var certificateConfig = context.Configuration.GetSection("Certificate");
+                            var certFileName = certificateConfig["FileName"];
+                            var certPassword = certificateConfig["Password"];
+                            // Configure the Url and ports to bind to
+                            // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
+                            // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
+                            options.ListenLocalhost(5001, listenOptions =>
+                            {
+                                listenOptions.UseHttps(certFileName, certPassword);
+                                listenOptions.Protocols = HttpProtocols.Http2;
+                            });
+                        })
+                        .UseStartup<Startup>()
+                        .UseDefaultServiceProvider((context, options) =>
+                        {
+                            // Add checks for dependency injection on development environment 
+                            if (context.HostingEnvironment.IsDevelopment())
+                            {
+                                options.ValidateScopes = true;
+                            }
                         });
-                    }).UseStartup<Startup>();
                 });
     }
 }
