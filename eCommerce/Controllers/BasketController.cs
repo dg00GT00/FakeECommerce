@@ -29,7 +29,7 @@ namespace eCommerce.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteBasketAsync(string id)
+        public async Task<IActionResult> DeleteBasketAsync(string id)
         {
             var deleted = await _basketRepository.DeleteBasketAsync(id);
             return deleted ? (ActionResult) NoContent() : NotFound();
