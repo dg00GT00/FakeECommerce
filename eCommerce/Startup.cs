@@ -53,6 +53,7 @@ namespace eCommerce
                 }
             );
 
+            services.AddIdentityServices();
             services.AddSwaggerDocumentation();
             services.AddCors(options =>
             {
