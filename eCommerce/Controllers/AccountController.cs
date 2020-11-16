@@ -38,7 +38,7 @@ namespace eCommerce.Controllers
                 return Unauthorized(new ApiResponse(401));
             }
 
-            _context.HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
+            _context.HttpContext.Response.StatusCode = (int) HttpStatusCode.Accepted;
             return new UserDto
             {
                 Email = user.Email,
