@@ -34,7 +34,8 @@ namespace Infrastructure.Services
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddHours(2),
                 SigningCredentials = credentials,
-                Issuer = _config["Token:Issuer"]
+                Issuer = _config["Token:Issuer"],
+                NotBefore = DateTime.Now
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
