@@ -6,7 +6,6 @@ using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,17 +42,7 @@ namespace eCommerce
                 // Connection strings comes from User secrets
                 builder.UseNpgsql(Configuration.GetConnectionString("IdentityConnection"));
             });
-            services.AddAntiforgery(
-                options =>
-                {
-                    options.Cookie.Name = "_af";
-                    options.Cookie.HttpOnly = true;
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                    options.HeaderName = "X-XSRF-TOKEN";
-                }
-            );
-
-            services.AddIdentityServices();
+            services.AddIdentityServices(Configuration);
             services.AddSwaggerDocumentation();
             services.AddCors(options =>
             {
@@ -79,6 +68,8 @@ namespace eCommerce
             app.UseRouting();
 
             app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

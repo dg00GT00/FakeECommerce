@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Core.Dtos;
 using Core.Entities.Identity;
 using eCommerce.Errors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,14 +12,11 @@ namespace eCommerce.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IHttpContextAccessor _context;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-            IHttpContextAccessor context)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
         }
 
         [HttpPost("login")]
@@ -38,7 +34,7 @@ namespace eCommerce.Controllers
                 return Unauthorized(new ApiResponse(401));
             }
 
-            _context.HttpContext.Response.StatusCode = (int) HttpStatusCode.Accepted;
+            HttpContext.Response.StatusCode = (int) HttpStatusCode.Accepted;
             return new UserDto
             {
                 Email = user.Email,
@@ -62,7 +58,7 @@ namespace eCommerce.Controllers
                 return BadRequest(new ApiResponse(400));
             }
 
-            _context.HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
+            HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
             return new UserDto
             {
                 DisplayName = user.DisplayName,
