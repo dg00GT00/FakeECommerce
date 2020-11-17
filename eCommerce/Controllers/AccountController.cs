@@ -2,6 +2,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Core.Dtos;
 using Core.Entities.Identity;
+using Core.Interfaces;
 using eCommerce.Errors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,16 @@ namespace eCommerce.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ITokenServices _tokenServices;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+            ITokenServices tokenServices)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _tokenServices = tokenServices;
         }
+
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
@@ -38,7 +43,7 @@ namespace eCommerce.Controllers
             return new UserDto
             {
                 Email = user.Email,
-                Token = "This will be a token",
+                Token = _tokenServices.CreateToken(user),
                 DisplayName = user.DisplayName
             };
         }
@@ -62,7 +67,7 @@ namespace eCommerce.Controllers
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = "This will be a token",
+                Token = _tokenServices.CreateToken(user),
                 Email = user.Email
             };
         }

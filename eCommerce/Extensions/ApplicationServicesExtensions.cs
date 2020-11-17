@@ -3,6 +3,7 @@ using Core.Interfaces;
 using eCommerce.Errors;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,7 @@ namespace eCommerce.Extensions
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection s)
         {
+            s.AddScoped<ITokenServices, TokenServices>();
             s.AddScoped(typeof(IGetRepository<>), typeof(GetRepository<>));
             s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
             s.AddScoped<IBasketRepository, BasketRepository>();

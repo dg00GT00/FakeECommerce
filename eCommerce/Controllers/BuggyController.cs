@@ -1,6 +1,7 @@
 using System.Net;
 using eCommerce.Errors;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
@@ -30,6 +31,12 @@ namespace eCommerce.Controllers
             return Ok();
         }
 
+        [HttpGet("testauth"), Authorize]
+        public ActionResult<string> GetSecretText()
+        {
+            return "secret stuff";
+        }
+
         [HttpGet("servererror")]
         public ActionResult GetServerError()
         {
@@ -40,7 +47,7 @@ namespace eCommerce.Controllers
         [HttpGet("badrequest")]
         public ActionResult GetBadRequest()
         {
-            return BadRequest(new ApiResponse((int)HttpStatusCode.BadRequest));
+            return BadRequest(new ApiResponse((int) HttpStatusCode.BadRequest));
         }
 
         [HttpGet("badrequest/{id}")]
