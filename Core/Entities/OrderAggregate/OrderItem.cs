@@ -10,6 +10,8 @@ namespace Core.Entities.OrderAggregate
         {
         }
 
+        // Obs: Populating the properties through constructor is optional
+        // when instantiating a new class
         public OrderItem(ProductItemOrdered itemOrdered, decimal price, int quantity)
         {
             ItemOrdered = itemOrdered;
