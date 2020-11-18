@@ -20,6 +20,7 @@ namespace eCommerce.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection s)
         {
             s.AddScoped<ITokenServices, TokenServices>();
+            s.AddScoped<IOrderService, OrderService>();
             s.AddScoped(typeof(IGetRepository<>), typeof(GetRepository<>));
             s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
             s.AddScoped<IBasketRepository, BasketRepository>();
