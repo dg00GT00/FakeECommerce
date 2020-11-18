@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.OrderAggregate;
 using FakeProductsProvider.JsonServices;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
@@ -22,7 +23,8 @@ namespace Infrastructure.Data
         {
             {"brands.json", typeof(ProductBrand)},
             {"types.json", typeof(ProductType)},
-            {"products.json", typeof(Product)}
+            {"products.json", typeof(Product)},
+            {"delivery.json", typeof(DeliveryMethod)}
         };
 
         private static string GeFileFullPath(string fileName)
