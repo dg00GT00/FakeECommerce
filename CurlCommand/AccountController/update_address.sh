@@ -1,4 +1,5 @@
 #!/bin/sh
+
 input=$(dirname $0)/update_address.json
 
 curl \
