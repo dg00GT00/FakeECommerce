@@ -21,6 +21,11 @@ namespace Infrastructure.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:key"]));
         }
 
+        /// <summary>
+        /// Creates a JWT Authorization
+        /// </summary>
+        /// <param name="user">the user to set the authorization to</param>
+        /// <returns>the generated token</returns>
         public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>

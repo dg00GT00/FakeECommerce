@@ -1,6 +1,7 @@
 using AutoMapper;
 using Core.Dtos;
 using Core.Entities;
+using Core.Entities.Identity;
 
 namespace eCommerce.Helpers
 {
@@ -10,6 +11,7 @@ namespace eCommerce.Helpers
         {
             GetFullProductSpecsMapping();
             InsertFullProductSpecsMapping();
+            IdentityAddressMapping();
         }
 
         /// <summary>
@@ -33,6 +35,14 @@ namespace eCommerce.Helpers
         private void InsertFullProductSpecsMapping()
         {
             CreateMap<ProductToInsertionDto, Product>();
+        }
+
+        /// <summary>
+        /// Maps the user address for Identity purposes
+        /// </summary>
+        private void IdentityAddressMapping()
+        {
+            CreateMap<Address, AddressDto>().ReverseMap();
         }
     }
 }
