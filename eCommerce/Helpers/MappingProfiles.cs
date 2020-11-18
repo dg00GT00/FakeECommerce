@@ -12,6 +12,7 @@ namespace eCommerce.Helpers
             GetFullProductSpecsMapping();
             InsertFullProductSpecsMapping();
             IdentityAddressMapping();
+            BasketMapping();
         }
 
         /// <summary>
@@ -43,6 +44,15 @@ namespace eCommerce.Helpers
         private void IdentityAddressMapping()
         {
             CreateMap<Address, AddressDto>().ReverseMap();
+        }
+
+        /// <summary>
+        /// Maps the basket items and customer basket items
+        /// </summary>
+        private void BasketMapping()
+        {
+            CreateMap<CustomerBasketDto, CustomerBasket>();
+            CreateMap<BasketItemDto, BasketItem>();
         }
     }
 }
