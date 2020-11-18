@@ -1,8 +1,5 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Core.Entities
 {
-    [Table("Product", Schema = "Dev")]
     public class Product : BaseEntity
     {
         public string Name { get; set; }

@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Core.Entities
 {
+    /// <summary>
+    /// Redis related entity
+    /// </summary>
     public class CustomerBasket
     {
         // Empty constructor for Redis purposes

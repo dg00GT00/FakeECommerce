@@ -1,5 +1,8 @@
 namespace Core.Entities
 {
+    /// <summary>
+    /// Redis related entity
+    /// </summary>
     public class BasketItem
     {
         public int Id { get; set; }

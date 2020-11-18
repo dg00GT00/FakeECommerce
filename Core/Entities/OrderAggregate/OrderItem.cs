@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Core.Entities.OrderAggregate
 {
+    [Table("OrderItem", Schema = "Dev")]
     public class OrderItem : BaseEntity
     {
         // To Entity Framework requirements

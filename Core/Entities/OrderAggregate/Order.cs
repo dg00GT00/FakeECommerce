@@ -1,10 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities.OrderAggregate
 {
+    [Table("Order", Schema = "Dev")]
     public class Order : BaseEntity
     {
+        // To Entity Framework requirements
+        public Order()
+        {
+        }
+
         public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress,
             DeliveryMethod deliveryMethod, decimal subtotal, OrderStatus status)
         {
