@@ -23,7 +23,7 @@ namespace Infrastructure.Services
             _basketRepo = basketRepo;
         }
 
-        public async Task<Order> CreateOrder(string buyerEmail, int deliveryMethodId, string basketId,
+        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId,
             Address shippingAddress)
         {
             // Get basket from the repo

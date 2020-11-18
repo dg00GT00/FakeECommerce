@@ -39,11 +39,12 @@ namespace eCommerce.Helpers
         }
 
         /// <summary>
-        /// Maps the user address for Identity purposes
+        /// Maps the user address for Identity and Order aggregate
         /// </summary>
         private void IdentityAddressMapping()
         {
             CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
         }
 
         /// <summary>
