@@ -40,7 +40,7 @@ namespace eCommerce
             services.AddDbContext<AppIdentityDbContext>(builder =>
             {
                 // Connection strings comes from User secrets
-                builder.UseNpgsql(Configuration.GetConnectionString("IdentityConnection"));
+                builder.UseNpgsql(Configuration.GetConnectionString("IdentityDatabase"));
             });
             services.AddIdentityServices(Configuration);
             services.AddSwaggerDocumentation();
