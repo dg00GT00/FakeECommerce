@@ -4,6 +4,10 @@ using Core.Entities;
 
 namespace Core.Interfaces
 {
+    /// <summary>
+    /// Declares methods for getting entities from database
+    /// </summary>
+    /// <typeparam name="T">a BaseEntity type</typeparam>
     public interface IGetRepository<T> where T : BaseEntity
     {
         Task<T> GetEntityByIdAsync(int id);
