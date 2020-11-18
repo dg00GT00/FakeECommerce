@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities.OrderAggregate
 {
-    [Table("Order", Schema = "Dev")]
     public class Order : BaseEntity
     {
         // To Entity Framework requirements
@@ -13,14 +11,13 @@ namespace Core.Entities.OrderAggregate
         }
 
         public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress,
-            DeliveryMethod deliveryMethod, decimal subtotal, OrderStatus status)
+            DeliveryMethod deliveryMethod, decimal subtotal)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
             Subtotal = subtotal;
-            Status = status;
         }
 
         public string BuyerEmail { get; set; }
