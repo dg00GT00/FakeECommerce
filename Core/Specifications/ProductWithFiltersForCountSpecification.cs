@@ -1,9 +1,9 @@
 using System;
 using System.Linq.Expressions;
 using Core.Entities;
-using eCommerce.Models;
+using Core.Models;
 
-namespace eCommerce.Specifications
+namespace Core.Specifications
 {
     public class ProductWithFiltersForCountSpecification : BaseSpecification<Product>
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Core.Interfaces;
 
-namespace eCommerce.Specifications
+namespace Core.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {

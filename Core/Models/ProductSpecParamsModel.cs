@@ -1,7 +1,6 @@
 using Core.Enums;
-using Microsoft.AspNetCore.Mvc;
 
-namespace eCommerce.Models
+namespace Core.Models
 {
     public class ProductSpecParamsModel
     {
@@ -10,8 +9,6 @@ namespace eCommerce.Models
         private int _pageSize = 6;
         public int? BrandId { get; set; }
         public int? TypeId { get; set; }
-
-        [BindProperty(Name = "sortBy")]
         public SortBy Sort { get; set; }
 
         public int PageSize

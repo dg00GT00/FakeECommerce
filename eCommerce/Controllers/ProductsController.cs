@@ -6,10 +6,10 @@ using AutoMapper;
 using Core.Dtos;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Models;
+using Core.Specifications;
 using eCommerce.Errors;
 using eCommerce.Helpers;
-using eCommerce.Models;
-using eCommerce.Specifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -2,9 +2,9 @@ using System;
 using System.Linq.Expressions;
 using Core.Entities;
 using Core.Enums;
-using eCommerce.Models;
+using Core.Models;
 
-namespace eCommerce.Specifications
+namespace Core.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
