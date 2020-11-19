@@ -1,4 +1,4 @@
-using System.Net;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Dtos;
@@ -37,6 +37,33 @@ namespace eCommerce.Controllers
 
             HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
             return order;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<Order>>> GetOrdersForUser()
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var orders = await _orderService.GetOrderForUserAsync(email);
+            return Ok(orders);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> GetOrderByIdForUser(int id)
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var order = await _orderService.GetOrderByIdAsync(id, email);
+            if (order is null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+            return Ok(order);
+        }
+
+        [HttpGet("deliveryMethods")]
+        public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
+        {
+            return Ok(await _orderService.GetDeliveryMethodAsync());
         }
     }
 }
