@@ -28,7 +28,7 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<T> GetEntityByIdAsync(int id)
         {
-            return await _context.Set<T>().FindAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<IReadOnlyList<T>> ListAllEntitiesAsync()
