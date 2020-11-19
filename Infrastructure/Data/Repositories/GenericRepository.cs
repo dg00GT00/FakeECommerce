@@ -33,22 +33,22 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<IReadOnlyList<T>> ListAllEntitiesAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetEntityWithSpecAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).FirstOrDefaultAsync();
+            return await ApplySpecification(spec).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<IReadOnlyList<T>> ListEntityAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).ToListAsync();
+            return await ApplySpecification(spec).AsNoTracking().ToListAsync();
         }
 
         public async Task<int> CountEntityAsync(ISpecification<T> spec)
         {
-            return await ApplySpecification(spec).CountAsync();
+            return await ApplySpecification(spec).AsNoTracking().CountAsync();
         }
 
         public void AddEntity(T entity)
