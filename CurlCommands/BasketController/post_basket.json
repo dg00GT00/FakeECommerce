@@ -4,11 +4,14 @@
     {
       "id": 17,
       "productName": "Angular Magic Boots",
-      "price": 1,
-      "quantity": 3,
+      "price": 2,
+      "quantity": 10,
       "pictureUrl": "https://localhost:5001/images/products/boot-ang2.png",
       "brand": "Angular",
       "type": "Boots"
     }
-  ]
+  ],
+  "deliveryMethodId": null,
+  "clientSecret": "pi_1HpIiDDWWNDRw41cOAiwlL58_secret_TsDZ4rppRu6T6UK1IPLnhZY0v",
+  "paymentIntendId": "pi_1HpIiDDWWNDRw41cOAiwlL58"
 }
