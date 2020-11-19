@@ -29,6 +29,8 @@ namespace Core.Entities.OrderAggregate
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
         public string PaymentIntentId { get; set; }
 
+        // This method is run automatically by AutoMapper due to fact it has a "Get" fragment in its name
+        // in addition of getting the "Total" name that correspond to the same name at the destination class
         public decimal GetTotal()
         {
             return Subtotal + DeliveryMethod.Price;

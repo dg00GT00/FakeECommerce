@@ -1,7 +1,8 @@
 using AutoMapper;
 using Core.Dtos;
 using Core.Entities;
-using Core.Entities.Identity;
+using Core.Entities.OrderAggregate;
+using Address = Core.Entities.Identity.Address;
 
 namespace eCommerce.Helpers
 {
@@ -13,6 +14,7 @@ namespace eCommerce.Helpers
             InsertFullProductSpecsMapping();
             IdentityAddressMapping();
             BasketMapping();
+            OrderMapping();
         }
 
         /// <summary>
@@ -54,6 +56,15 @@ namespace eCommerce.Helpers
         {
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();
+        }
+
+        /// <summary>
+        /// Maps for ordering items
+        /// </summary>
+        private void OrderMapping()
+        {
+            CreateMap<Order, OrderToReturnDto>();
+            CreateMap<OrderItem, OrderItemDto>();
         }
     }
 }
