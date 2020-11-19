@@ -54,11 +54,6 @@ namespace Infrastructure.Data.Repositories
         public void AddEntity(T entity)
         {
             _context.Set<T>().Add(entity);
-            // var insertedEntity = await _context.Set<T>()
-            //     .AsNoTracking()
-            //     .OrderByDescending(t => t.Id)
-            //     .FirstAsync();
-            // return insertedEntity;
         }
 
         public void UpdateEntity(T entity)
