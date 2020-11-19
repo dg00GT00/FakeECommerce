@@ -1,0 +1,14 @@
+{
+  "name": "Test Product",
+  "description": "A Test Description",
+  "price": 100.09,
+  "pictureUrl": "https://fakeapi/image",
+  "productType": {
+    "id": 2,
+    "name": "Fake Product Type"
+  },
+  "productBrand": {
+    "id": 3,
+    "name": "Fake Product Brand"
+  }
+}
