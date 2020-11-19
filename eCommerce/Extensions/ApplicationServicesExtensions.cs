@@ -19,9 +19,10 @@ namespace eCommerce.Extensions
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection s)
         {
+            s.AddScoped<IUnitOfWork, UnitOfWork>();
             s.AddScoped<ITokenServices, TokenServices>();
             s.AddScoped<IOrderService, OrderService>();
-            s.AddScoped(typeof(IGetRepository<>), typeof(GetRepository<>));
+            s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
             s.AddScoped<IBasketRepository, BasketRepository>();
             // It reformat some possible Model state errors in order to complaint to ApiResponse implementation

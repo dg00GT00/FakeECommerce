@@ -9,13 +9,13 @@ namespace Infrastructure.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IGetRepository<Order> _orderRepo;
-        private readonly IGetRepository<DeliveryMethod> _dmRepo;
-        private readonly IGetRepository<Product> _productRepo;
+        private readonly IGenericRepository<Order> _orderRepo;
+        private readonly IGenericRepository<DeliveryMethod> _dmRepo;
+        private readonly IGenericRepository<Product> _productRepo;
         private readonly IBasketRepository _basketRepo;
 
-        public OrderService(IGetRepository<Order> orderRepo, IGetRepository<DeliveryMethod> dmRepo,
-            IGetRepository<Product> productRepo, IBasketRepository basketRepo)
+        public OrderService(IGenericRepository<Order> orderRepo, IGenericRepository<DeliveryMethod> dmRepo,
+            IGenericRepository<Product> productRepo, IBasketRepository basketRepo)
         {
             _dmRepo = dmRepo;
             _orderRepo = orderRepo;

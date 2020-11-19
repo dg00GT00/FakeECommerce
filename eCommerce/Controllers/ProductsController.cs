@@ -17,16 +17,16 @@ namespace eCommerce.Controllers
 {
     public class ProductsController : BaseApiController
     {
-        private readonly IGetRepository<Product> _getRepo;
+        private readonly IGenericRepository<Product> _genericRepo;
         private readonly IPostRepository<Product> _postRepo;
         private readonly IMapper _mapper;
 
         public ProductsController(
-            IGetRepository<Product> getRepo,
+            IGenericRepository<Product> genericRepo,
             IPostRepository<Product> postRepo,
             IMapper mapper)
         {
-            _getRepo = getRepo;
+            _genericRepo = genericRepo;
             _postRepo = postRepo;
             _mapper = mapper;
         }
@@ -38,8 +38,8 @@ namespace eCommerce.Controllers
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(productParamsModel);
             var countSpec = new ProductWithFiltersForCountSpecification(productParamsModel);
-            var totalItems = await _getRepo.CountEntityAsync(countSpec);
-            var products = await _getRepo.ListEntityAsync(spec);
+            var totalItems = await _genericRepo.CountEntityAsync(countSpec);
+            var products = await _genericRepo.ListEntityAsync(spec);
             var mappedProducts = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
             return Ok(new Pagination<ProductToReturnDto>(
                 productParamsModel.PageIndex, productParamsModel.PageSize, totalItems, mappedProducts
@@ -52,7 +52,7 @@ namespace eCommerce.Controllers
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
-            var product = await _getRepo.GetEntityWithSpecAsync(spec);
+            var product = await _genericRepo.GetEntityWithSpecAsync(spec);
             var mappedProduct = _mapper.Map<Product, ProductToReturnDto>(product);
             return mappedProduct is null
                 ? (ActionResult<ProductToReturnDto>) NotFound(new ApiResponse((int) HttpStatusCode.NotFound))

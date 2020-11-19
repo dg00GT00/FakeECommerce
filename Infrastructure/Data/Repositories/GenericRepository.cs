@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.Repositories
 {
-    public class GetRepository<T> : IGetRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly StoreContext _context;
 
@@ -16,7 +16,7 @@ namespace Infrastructure.Data.Repositories
         /// based on some specifications
         /// </summary>
         /// <param name="context">the db context to apply the operations on</param>
-        public GetRepository(StoreContext context)
+        public GenericRepository(StoreContext context)
         {
             _context = context;
         }

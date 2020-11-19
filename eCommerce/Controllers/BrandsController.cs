@@ -9,9 +9,9 @@ namespace eCommerce.Controllers
 {
     public class BrandsController : BaseApiController
     {
-        private readonly IGetRepository<ProductBrand> _repo;
+        private readonly IGenericRepository<ProductBrand> _repo;
 
-        public BrandsController(IGetRepository<ProductBrand> repo)
+        public BrandsController(IGenericRepository<ProductBrand> repo)
         {
             _repo = repo;
         }
