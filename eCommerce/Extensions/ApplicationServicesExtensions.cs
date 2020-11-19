@@ -22,6 +22,7 @@ namespace eCommerce.Extensions
             s.AddScoped<IUnitOfWork, UnitOfWork>();
             s.AddScoped<ITokenServices, TokenServices>();
             s.AddScoped<IOrderService, OrderService>();
+            s.AddScoped<IPaymentService, PaymentService>();
             s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
             s.AddScoped<IBasketRepository, BasketRepository>();
