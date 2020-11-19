@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Shares the JWT authorization token to other testing endpoint scripts
+
+token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYkB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJCb2IiLCJuYmYiOjE2MDU3OTk1NzAsImV4cCI6MTYwNTgwNjc3MCwiaWF0IjoxNjA1Nzk5NTcwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxIn0.sN1C4XxRNYGKt7ztVsd7DxClaLKLvJhVlLn7YhChlvmvRPl8cEvnGlBo_45yPy06B3lRrMHKFUAd4KepQjdpWg'

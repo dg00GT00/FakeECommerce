@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 input=$(dirname $0)/register_user.json
 

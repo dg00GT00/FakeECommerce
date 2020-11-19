@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 curl \
 -H 'Content-Type: application/json; charset=UTF-8' \
