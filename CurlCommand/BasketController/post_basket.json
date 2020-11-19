@@ -1,11 +1,11 @@
 {
-  "id": "basket2",
+  "id": "basket1",
   "items": [
     {
       "id": 17,
-      "productName": "Angular Purple Boots",
+      "productName": "Angular Magic Boots",
       "price": 10,
-      "quantity": 100,
+      "quantity": 2,
       "pictureUrl": "https://localhost:5001/images/products/boot-ang2.png",
       "brand": "Angular",
       "type": "Boots"

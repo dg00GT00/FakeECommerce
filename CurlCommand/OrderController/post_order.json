@@ -1,0 +1,13 @@
+{
+  "basketId": "basket1",
+  "deliveryMethodId": 2,
+  "shipToAddress": {
+    "firstName": "Bob",
+    "lastName": "Bobbity",
+    "street": "10 The Street",
+    "city": "New York",
+    "state": "NY",
+    "country": "USA",
+    "zipcode": "90250"
+  }
+}
