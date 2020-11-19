@@ -5,7 +5,7 @@ using Core.Entities;
 namespace Core.Interfaces
 {
     /// <summary>
-    /// Declares methods for mainly getting entities from database
+    /// Declares methods for managing entities from database
     /// </summary>
     /// <typeparam name="T">a BaseEntity type</typeparam>
     public interface IGenericRepository<T> where T : BaseEntity
@@ -18,5 +18,11 @@ namespace Core.Interfaces
         Task<IReadOnlyList<T>> ListEntityAsync(ISpecification<T> spec);
 
         Task<int> CountEntityAsync(ISpecification<T> spec);
+
+        void AddEntity(T entity);
+
+        void UpdateEntity(T entity);
+
+        void DeleteEntity(T entity);
     }
 }

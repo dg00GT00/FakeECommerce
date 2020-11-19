@@ -12,7 +12,7 @@ namespace Infrastructure.Data.Repositories
         private readonly StoreContext _context;
 
         /// <summary>
-        /// Repository for getting entities from the database either or not
+        /// Repository for managing entities from the database either or not
         /// based on some specifications
         /// </summary>
         /// <param name="context">the db context to apply the operations on</param>
@@ -49,6 +49,27 @@ namespace Infrastructure.Data.Repositories
         public async Task<int> CountEntityAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).CountAsync();
+        }
+
+        public void AddEntity(T entity)
+        {
+            _context.Set<T>().Add(entity);
+            // var insertedEntity = await _context.Set<T>()
+            //     .AsNoTracking()
+            //     .OrderByDescending(t => t.Id)
+            //     .FirstAsync();
+            // return insertedEntity;
+        }
+
+        public void UpdateEntity(T entity)
+        {
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void DeleteEntity(T entity)
+        {
+            _context.Set<T>().Remove(entity);
         }
     }
 }
