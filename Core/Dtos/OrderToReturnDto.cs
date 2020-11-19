@@ -12,7 +12,7 @@ namespace Core.Dtos
         public decimal ShippingPrice { get; set; }
         public IReadOnlyList<OrderItemDto> OrderItems { get; set; }
         public decimal Subtotal { get; set; }
-        public decimal Total { get; set; }
+        public decimal Total { get; set; } // Mapped automatically by AutoMapper
         public string Status { get; set; }
     }
 }

@@ -63,8 +63,18 @@ namespace eCommerce.Helpers
         /// </summary>
         private void OrderMapping()
         {
-            CreateMap<Order, OrderToReturnDto>();
-            CreateMap<OrderItem, OrderItemDto>();
+            CreateMap<Order, OrderToReturnDto>()
+                .ForMember(dto => dto.DeliveryMethod,
+                    expression => expression.MapFrom(order => order.DeliveryMethod.ShortName))
+                .ForMember(dto => dto.ShippingPrice,
+                    expression => expression.MapFrom(order => order.DeliveryMethod.Price));
+            CreateMap<OrderItem, OrderItemDto>()
+                .ForMember(dto => dto.ProductId,
+                    expression => expression.MapFrom(item => item.ItemOrdered.ProductItemId))
+                .ForMember(dto => dto.ProductName,
+                    expression => expression.MapFrom(item => item.ItemOrdered.ProductName))
+                .ForMember(dto => dto.PictureUrl,
+                    expression => expression.MapFrom(item => item.ItemOrdered.PictureUrl));
         }
     }
 }
