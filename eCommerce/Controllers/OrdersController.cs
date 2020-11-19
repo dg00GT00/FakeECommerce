@@ -35,8 +35,7 @@ namespace eCommerce.Controllers
                 return BadRequest(new ApiResponse(400, "Problem creating order"));
             }
 
-            HttpContext.Response.StatusCode = (int) HttpStatusCode.Created;
-            return order;
+            return CreatedAtAction(nameof(GetOrderByIdForUser), order.Id, order);
         }
 
         [HttpGet]
