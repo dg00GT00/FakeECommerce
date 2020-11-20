@@ -93,7 +93,7 @@ namespace Infrastructure.Services
             _unitOfWork.Repository<Order>().UpdateEntity(order);
             await _unitOfWork.Complete();
 
-            return null;
+            return order;
         }
 
         public async Task<Order> UpdateOrderPaymentFailed(string paymentIntentId)
