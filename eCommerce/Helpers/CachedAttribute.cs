@@ -33,6 +33,7 @@ namespace eCommerce.Helpers
                     StatusCode = 200
                 };
                 context.Result = contentResult;
+                return;
             }
 
             var executedContext = await next();
