@@ -11,13 +11,16 @@ using Order = Core.Entities.OrderAggregate.Order;
 
 namespace eCommerce.Controllers
 {
-    public class PaymentController : BaseApiController
+    public class PaymentsController : BaseApiController
     {
         private readonly IPaymentService _paymentService;
-        private readonly ILogger<IPaymentService> _logger;
-        private const string WhSecret = "";
 
-        public PaymentController(IPaymentService paymentService, ILogger<IPaymentService> logger)
+        private readonly ILogger<IPaymentService> _logger;
+
+        // This constant string has valid of 90 days
+        private const string WhSecret = "whsec_QMu3UTXZ3CaCXJuZCEex5OAQ4QjPrdn3";
+
+        public PaymentsController(IPaymentService paymentService, ILogger<IPaymentService> logger)
         {
             _paymentService = paymentService;
             _logger = logger;
