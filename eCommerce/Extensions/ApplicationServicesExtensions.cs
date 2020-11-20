@@ -19,6 +19,7 @@ namespace eCommerce.Extensions
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection s)
         {
+            s.AddSingleton<IResponseCacheService, ResponseCacheService>();
             s.AddScoped<IUnitOfWork, UnitOfWork>();
             s.AddScoped<ITokenServices, TokenServices>();
             s.AddScoped<IOrderService, OrderService>();
