@@ -1,3 +1,4 @@
+using System.IO;
 using AutoMapper;
 using eCommerce.Extensions;
 using eCommerce.Helpers;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using StackExchange.Redis;
 
 namespace eCommerce
@@ -67,6 +69,15 @@ namespace eCommerce
 
             app.UseRouting();
 
+            // Middleware for serving the built client application
+            app.UseStaticFiles();
+            // Middleware for serving generic static files
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+                RequestPath = "/content"
+            });
+
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
@@ -75,7 +86,11 @@ namespace eCommerce
 
             app.UseSwaggerDocumentation();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
+            });
         }
     }
 }
