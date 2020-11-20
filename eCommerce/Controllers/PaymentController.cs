@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
+using eCommerce.Errors;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,13 @@ namespace eCommerce.Controllers
         [HttpPost("{basketId}"), Authorize]
         public async Task<ActionResult<CustomerBasket>> CreateOrUpdatePaymentIntent(string basketId)
         {
-            return await _paymentService.CreateOrUpdatePaymentIntent(basketId);
+            var basket = await _paymentService.CreateOrUpdatePaymentIntent(basketId);
+            if (basket is null)
+            {
+                return BadRequest(new ApiResponse(400, "Problem with your basket"));
+            }
+
+            return basket;
         }
     }
 }

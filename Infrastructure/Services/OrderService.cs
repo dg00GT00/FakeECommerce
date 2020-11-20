@@ -12,11 +12,13 @@ namespace Infrastructure.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBasketRepository _basketRepo;
+        private readonly IPaymentService _paymentService;
 
-        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
+        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo, IPaymentService paymentService)
         {
             _unitOfWork = unitOfWork;
             _basketRepo = basketRepo;
+            _paymentService = paymentService;
         }
 
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId,
@@ -38,8 +40,18 @@ namespace Infrastructure.Services
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetEntityByIdAsync(deliveryMethodId);
             // Calculate subtotal 
             var subtotal = items.Sum(item => item.Price * item.Quantity);
+            // Check to see if order exists
+            var spec = new OrdersWithItemsAndOrderingSpecification(basket.PaymentIntendId);
+            var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);
+
+            if (existingOrder != null)
+            {
+                _unitOfWork.Repository<Order>().DeleteEntity(existingOrder);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntendId);
+            }
+
             // Create order
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal);
+            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntendId);
             _unitOfWork.Repository<Order>().AddEntity(order);
             // Save to db
             var result = await _unitOfWork.Complete();
@@ -48,8 +60,6 @@ namespace Infrastructure.Services
                 return null;
             }
 
-            // Delete basket
-            await _basketRepo.DeleteBasketAsync(basketId);
             // Return the order
             return order;
         }
