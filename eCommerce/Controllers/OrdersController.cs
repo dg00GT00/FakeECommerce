@@ -35,7 +35,7 @@ namespace eCommerce.Controllers
                 return BadRequest(new ApiResponse(400, "Problem creating order"));
             }
 
-            return CreatedAtAction(nameof(GetOrderByIdForUser), order.Id, order);
+            return CreatedAtAction(nameof(GetOrderByIdForUser), new {order.Id}, order);
         }
 
         [HttpGet]

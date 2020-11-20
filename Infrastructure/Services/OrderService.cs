@@ -41,27 +41,22 @@ namespace Infrastructure.Services
             // Calculate subtotal 
             var subtotal = items.Sum(item => item.Price * item.Quantity);
             // Check to see if order exists
-            var spec = new OrdersWithItemsAndOrderingSpecification(basket.PaymentIntendId);
+            var spec = new OrdersWithItemsAndOrderingSpecification(basket.PaymentIntentId);
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);
 
             if (existingOrder != null)
             {
                 _unitOfWork.Repository<Order>().DeleteEntity(existingOrder);
-                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntendId);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
             }
 
             // Create order
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntendId);
+            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
             _unitOfWork.Repository<Order>().AddEntity(order);
             // Save to db
             var result = await _unitOfWork.Complete();
-            if (result <= 0)
-            {
-                return null;
-            }
-
             // Return the order
-            return order;
+            return result <= 0 ? null : order;
         }
 
         public async Task<IReadOnlyList<Order>> GetOrderForUserAsync(string buyerEmail)
