@@ -10,5 +10,8 @@
       "brand": "Angular",
       "type": "Boots"
     }
-  ]
+  ],
+  "deliveryMethodId": null,
+  "clientSecret": "pi_1Hpba9DWWNDRw41cQX0fA4Xm_secret_GTQ3Um0CtRNJ2DReqCQ5Svsa5",
+  "paymentIntendId": "pi_1Hpba9DWWNDRw41cQX0fA4Xm"
 }
