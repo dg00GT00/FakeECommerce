@@ -31,7 +31,7 @@ namespace eCommerce.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet, Cached(600)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParamsModel productParamsModel)
@@ -46,7 +46,7 @@ namespace eCommerce.Controllers
             ));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Cached(600)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
