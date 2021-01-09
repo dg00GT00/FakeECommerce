@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   ePostgres:
-    image: "postgres:latest"
+    image: "postgres:13-alpine"
     environment:
       POSTGRES_PASSWORD: eCommerce2020
       POSTGRES_DB: DevDatabase
@@ -11,7 +11,7 @@ services:
     ports:
       - 5432:5432
   eRedis:
-    image: "redis:latest"
+    image: "redis:6.0.9-alpine3.12"
     container_name: eCommerceRedis
     ports:
       - 6379:6379
