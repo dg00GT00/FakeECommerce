@@ -51,7 +51,7 @@ namespace eCommerce
                 options.AddPolicy("CorsPolicy", builder =>
                 {
                     // Cors to front-end React application
-                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
             // This service must be located at the end of the service pipeline
