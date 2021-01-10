@@ -16,8 +16,9 @@ namespace Infrastructure.Data
 {
     public class StoreContextSeed
     {
+        // TODO: Make this constant dynamic
         private const string SeedDirectory =
-            "/home/dggt/RiderProjects/eCommerce/Infrastructure/Data/NewCourseSeedData/";
+            "/home/dggt/Vscode/DotnetProjects/3.1/FakeECommerce/FakeECommerce/Infrastructure/Data/NewCourseSeedData/";
 
         private static Dictionary<string, Type> SeedDictionary { get; } = new Dictionary<string, Type>
         {
@@ -39,7 +40,7 @@ namespace Infrastructure.Data
                 var dbName = entityType.Name + "s";
                 var productProperty = context.GetType().GetTypeInfo().GetDeclaredProperty(dbName);
                 dynamic productEntity = productProperty?.GetValue(context);
-                if (!((IQueryable) productEntity)!.Any())
+                if (!((IQueryable)productEntity)!.Any())
                 {
                     var jsonData = await File.ReadAllTextAsync(GeFileFullPath(jsonFile));
                     var jsonSerializerType = typeof(JsonSerializerManager<>).MakeGenericType(entityType);
