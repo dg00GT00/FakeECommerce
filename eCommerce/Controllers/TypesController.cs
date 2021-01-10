@@ -17,7 +17,7 @@ namespace eCommerce.Controllers
             _repo = repo;
         }
 
-        [HttpGet, Cached(600)]
+        [HttpGet, Cached(2592000)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductsTypesAsync()
         {
