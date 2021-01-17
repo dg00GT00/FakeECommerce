@@ -16,9 +16,13 @@ namespace Infrastructure.Data
 {
     public class StoreContextSeed
     {
-        // TODO: Make this constant dynamic
-        private const string SeedDirectory =
-            "/home/dggt/Vscode/DotnetProjects/3.1/FakeECommerce/FakeECommerce/Infrastructure/Data/NewCourseSeedData/";
+        // The seed directory path behaviors dynamically based on OS
+        private static readonly string SeedDirectory = Path.GetFullPath(
+                Path.Combine(
+                    "..", 
+                    Path.Join("Infrastructure", "Data", "NewCourseSeedData", Path.DirectorySeparatorChar.ToString())),
+                Directory.GetCurrentDirectory()
+            );
 
         private static Dictionary<string, Type> SeedDictionary { get; } = new Dictionary<string, Type>
         {
@@ -28,7 +32,7 @@ namespace Infrastructure.Data
             {"delivery.json", typeof(DeliveryMethod)}
         };
 
-        private static string GeFileFullPath(string fileName)
+        private static string GetFileFullPath(string fileName)
         {
             return new StringBuilder(SeedDirectory).Append(fileName).ToString();
         }
@@ -42,7 +46,7 @@ namespace Infrastructure.Data
                 dynamic productEntity = productProperty?.GetValue(context);
                 if (!((IQueryable)productEntity)!.Any())
                 {
-                    var jsonData = await File.ReadAllTextAsync(GeFileFullPath(jsonFile));
+                    var jsonData = await File.ReadAllTextAsync(GetFileFullPath(jsonFile));
                     var jsonSerializerType = typeof(JsonSerializerManager<>).MakeGenericType(entityType);
                     dynamic jsonSerializer = Activator.CreateInstance(jsonSerializerType);
                     jsonSerializer!.JsonOptions = new JsonSerializerOptions();
