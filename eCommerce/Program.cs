@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Core.Entities.Identity;
 using Infrastructure.Data;
@@ -64,20 +65,22 @@ namespace eCommerce
                 {
                     webBuilder.ConfigureKestrel((context, options) =>
                         {
-                            // Configuration comes from user-secrets
-                            var certificateConfig = context.Configuration.GetSection("Certificate");
-                            var certFileName = certificateConfig["FileName"];
-                            var certPassword = certificateConfig["Password"];
-                            // Configure the Url and ports to bind to
-                            // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
-                            // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
-                            options.ListenLocalhost(5001, listenOptions =>
-                            {
-                                listenOptions.UseHttps(certFileName, certPassword);
-                                listenOptions.Protocols = HttpProtocols.Http2;
-                            });
+                            // To use the "dotnet dev-certs tool" on windows when creating https certificates
+                            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)){
+                                // Configuration comes from user-secrets
+                                var certificateConfig = context.Configuration.GetSection("Certificate");
+                                var certFileName = certificateConfig["FileName"];
+                                var certPassword = certificateConfig["Password"];
+                                // Configure the Url and ports to bind to
+                                // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
+                                // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
+                                options.ListenLocalhost(5001, listenOptions =>
+                                {
+                                    listenOptions.UseHttps(certFileName, certPassword);
+                                    listenOptions.Protocols = HttpProtocols.Http2;
+                                });
+                            }
                         })
-                        .UseStartup<Startup>()
                         .UseDefaultServiceProvider((context, options) =>
                         {
                             // Add checks for dependency injection on development environment 
@@ -85,7 +88,8 @@ namespace eCommerce
                             {
                                 options.ValidateScopes = true;
                             }
-                        });
+                        })
+                        .UseStartup<Startup>();
                 });
     }
 }
