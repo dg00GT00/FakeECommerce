@@ -22,7 +22,8 @@ namespace Infrastructure.Services
         {
             _basketRepository = basketRepository;
             _unitOfWork = unitOfWork;
-            _stripeKeys = config.GetSection("StripeSettings");
+            // Come from "dotnet user-secrets"
+            _stripeKeys = config.GetSection("StripeSettings");/*  */
         }
 
         public async Task<CustomerBasket> CreateOrUpdatePaymentIntent(string basketId)

@@ -18,6 +18,7 @@ namespace eCommerce.Controllers
         private readonly ILogger<IPaymentService> _logger;
 
         // This constant string has valid of 90 days
+        // Secret to use with stripe
         private const string WhSecret = "whsec_QMu3UTXZ3CaCXJuZCEex5OAQ4QjPrdn3";
 
         public PaymentsController(IPaymentService paymentService, ILogger<IPaymentService> logger)
