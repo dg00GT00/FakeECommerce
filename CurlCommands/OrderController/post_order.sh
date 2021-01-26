@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/RiderProjects/eCommerce/CurlCommands/shared_jwt_token.sh
+source $HOME/Vscode/FakeECommerce/CurlCommands/shared_jwt_token.sh
 
 input=$(dirname $0)/post_order.json
 
