@@ -2,17 +2,18 @@ using Core.Entities.OrderAggregate;
 
 namespace Core.Specifications
 {
-    public class OrdersWithItemsAndOrderingSpecification : BaseSpecification<Order>
+    public class OrdersWithItemsByUserEmailSpecification : BaseSpecification<Order>
     {
-        public OrdersWithItemsAndOrderingSpecification(string email) : base(order => order.BuyerEmail == email)
+        public OrdersWithItemsByUserEmailSpecification(string buyerEmail) : base(
+            order => order.BuyerEmail == buyerEmail)
         {
             AddInclude(order => order.OrderItems);
             AddInclude(order => order.DeliveryMethod);
             AddOrderByDescending(order => order.OrderDate);
         }
 
-        public OrdersWithItemsAndOrderingSpecification(int id, string email) : base(order =>
-            order.Id == id && order.BuyerEmail == email)
+        public OrdersWithItemsByUserEmailSpecification(int id, string buyerEmail) : base(order =>
+            order.Id == id && order.BuyerEmail == buyerEmail)
         {
             AddInclude(order => order.OrderItems);
             AddInclude(order => order.DeliveryMethod);

@@ -38,11 +38,11 @@ namespace eCommerce.Controllers
             return CreatedAtAction(nameof(GetOrderByIdForUser), new {order.Id}, order);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
+        [HttpGet("basket")]
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersByBasketId(
+            [FromQuery(Name = "id")] string basketId)
         {
-            var email = HttpContext.User.RetrieveEmailFromPrincipal();
-            var orders = await _orderService.GetOrderForUserAsync(email);
+            var orders = await _orderService.GetOrderByBasketIdAsync(basketId);
             return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
         }
 
@@ -57,6 +57,14 @@ namespace eCommerce.Controllers
             }
 
             return Ok(_mapper.Map<Order, OrderToReturnDto>(order));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var orders = await _orderService.GetOrderByUserAsync(email);
+            return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
         }
 
         [HttpGet("deliveryMethods")]

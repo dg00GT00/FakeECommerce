@@ -40,7 +40,7 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost("webhook")]
-        public async Task<ActionResult> StripeWebhook()
+        public async Task<ActionResult> StripeWebhook([FromQuery] string basketId)
         {
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
             var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], WhSecret);
@@ -52,7 +52,8 @@ namespace eCommerce.Controllers
                 case "payment_intent.succeeded":
                     intent = (PaymentIntent) stripeEvent.Data.Object;
                     _logger.LogInformation("Payment Succeeded: ", intent.Id);
-                    order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id);
+                    order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id, basketId);
+                    _logger.LogInformation("Deleted cache customer basket: ", basketId);
                     _logger.LogInformation("Order updated to payment received: ", order.Id);
                     break;
                 case "payment_intent.payment_failed":

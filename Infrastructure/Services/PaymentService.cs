@@ -81,7 +81,7 @@ namespace Infrastructure.Services
             return basket;
         }
 
-        public async Task<Order> UpdateOrderPaymentSucceeded(string paymentIntentId)
+        public async Task<Order> UpdateOrderPaymentSucceeded(string paymentIntentId, string basketId)
         {
             var spec = new OrderByPaymentIdSpecification(paymentIntentId);
             var order = await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);
@@ -92,6 +92,8 @@ namespace Infrastructure.Services
 
             order.Status = OrderStatus.PaymentReceived;
             _unitOfWork.Repository<Order>().UpdateEntity(order);
+            // Remove the basket from cache
+            await _basketRepository.DeleteBasketAsync(basketId);
             await _unitOfWork.Complete();
 
             return order;

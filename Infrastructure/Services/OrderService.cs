@@ -41,7 +41,7 @@ namespace Infrastructure.Services
             // Calculate subtotal 
             var subtotal = items.Sum(item => item.Price * item.Quantity);
             // Check to see if order exists
-            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
+            var spec = new OrderWithItemsByBasketIdSpecification(basketId);
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);
 
             if (existingOrder != null)
@@ -51,7 +51,8 @@ namespace Infrastructure.Services
             }
 
             // Create order
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
+            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId,
+                basketId);
             _unitOfWork.Repository<Order>().AddEntity(order);
             // Save to db
             var result = await _unitOfWork.Complete();
@@ -59,15 +60,21 @@ namespace Infrastructure.Services
             return result <= 0 ? null : order;
         }
 
-        public async Task<IReadOnlyList<Order>> GetOrderForUserAsync(string buyerEmail)
+        public async Task<IReadOnlyList<Order>> GetOrderByBasketIdAsync(string basketId)
         {
-            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
+            var spec = new OrderWithItemsByBasketIdSpecification(basketId);
+            return await _unitOfWork.Repository<Order>().ListEntityAsync(spec);
+        }
+
+        public async Task<IReadOnlyList<Order>> GetOrderByUserAsync(string buyerEmail)
+        {
+            var spec = new OrdersWithItemsByUserEmailSpecification(buyerEmail);
             return await _unitOfWork.Repository<Order>().ListEntityAsync(spec);
         }
 
         public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
         {
-            var spec = new OrdersWithItemsAndOrderingSpecification(id, buyerEmail);
+            var spec = new OrdersWithItemsByUserEmailSpecification(id, buyerEmail);
             return await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);
         }
 

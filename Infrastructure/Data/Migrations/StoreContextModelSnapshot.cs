@@ -52,6 +52,9 @@ namespace Infrastructure.Data.Migrations
                     .HasAnnotation("Npgsql:ValueGenerationStrategy",
                         NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                b.Property<string>("BasketId")
+                    .HasColumnType("text");
+
                 b.Property<string>("BuyerEmail")
                     .HasColumnType("text");
 
