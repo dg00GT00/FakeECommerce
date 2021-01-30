@@ -7,7 +7,6 @@ namespace Core.Specifications
         public OrdersWithItemsAndOrderingSpecification(string email) : base(order => order.BuyerEmail == email)
         {
             AddInclude(order => order.OrderItems);
-            AddInclude(order => order.DeliveryMethod);
             AddOrderByDescending(order => order.OrderDate);
         }
 
@@ -15,7 +14,6 @@ namespace Core.Specifications
             order.Id == id && order.BuyerEmail == email)
         {
             AddInclude(order => order.OrderItems);
-            AddInclude(order => order.DeliveryMethod);
         }
     }
 }
