@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using AutoMapper;
 using eCommerce.Extensions;
 using eCommerce.Helpers;
@@ -7,6 +9,8 @@ using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,11 +43,12 @@ namespace eCommerce
             {
                 // Connection strings comes from User secrets
                 options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
+                options.EnableSensitiveDataLogging();
             });
-            services.AddDbContext<AppIdentityDbContext>(builder =>
+            services.AddDbContext<AppIdentityDbContext>(options =>
             {
                 // Connection strings comes from User secrets
-                builder.UseNpgsql(Configuration.GetConnectionString("IdentityDatabase"));
+                options.UseNpgsql(Configuration.GetConnectionString("IdentityDatabase"));
             });
             services.AddIdentityServices(Configuration);
             services.AddSwaggerDocumentation();
