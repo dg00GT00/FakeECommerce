@@ -21,13 +21,14 @@ namespace Infrastructure.Services
             _paymentService = paymentService;
         }
 
-        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId,
+        public async Task<Order?> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId,
             Address shippingAddress)
         {
             // Get basket from the repo
             var basket = await _basketRepo.GetBasketAsync(basketId);
             // Get items from the product repo
             var items = new List<OrderItem>();
+            if (basket == null) return null;
             foreach (var item in basket.Items)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetEntityByIdAsync(item.Id);
@@ -51,7 +52,8 @@ namespace Infrastructure.Services
             }
 
             // Create order
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
+            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal,
+                basket.PaymentIntentId, basketId);
             _unitOfWork.Repository<Order>().AddEntity(order);
             // Save to db
             var result = await _unitOfWork.Complete();
@@ -65,7 +67,7 @@ namespace Infrastructure.Services
             return await _unitOfWork.Repository<Order>().ListEntityAsync(spec);
         }
 
-        public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
+        public async Task<Order?> GetOrderByIdAsync(int id, string buyerEmail)
         {
             var spec = new OrdersWithItemsAndOrderingSpecification(id, buyerEmail);
             return await _unitOfWork.Repository<Order>().GetEntityWithSpecAsync(spec);

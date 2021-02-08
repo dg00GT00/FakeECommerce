@@ -23,10 +23,10 @@ namespace Core.Specifications
                     AddOrderByDescending(p => p.Price);
                     break;
                 case SortBy.NameAsc:
-                    AddOrderBy(product => product.Name);
+                    AddOrderBy(product => product.Name ?? string.Empty);
                     break;
                 case SortBy.NameDesc:
-                    AddOrderByDescending(product => product.Name);
+                    AddOrderByDescending(product => product.Name ?? string.Empty);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(sortSortProperty), sortSortProperty, null);
@@ -41,8 +41,8 @@ namespace Core.Specifications
         private static Expression<Func<Product, bool>> BaseCriteria(ProductSpecParamsModel productParamsModel)
         {
             return product =>
-                (string.IsNullOrEmpty(productParamsModel.Search) ||
-                 product.Name.ToLower().Contains(productParamsModel.Search)) &&
+                product.Name != null && (string.IsNullOrEmpty(productParamsModel.Search) ||
+                                         product.Name.ToLower().Contains(productParamsModel.Search)) &&
                 (!productParamsModel.BrandId.HasValue || product.ProductBrandId == productParamsModel.BrandId) &&
                 (!productParamsModel.TypeId.HasValue || product.ProductTypeId == productParamsModel.TypeId);
         }

@@ -14,6 +14,8 @@ namespace Core.Specifications
             order.Id == id && order.BuyerEmail == email)
         {
             AddInclude(order => order.OrderItems);
+            AddInclude(order => order.DeliveryMethod);
+            AddOrderByDescending(order => order.OrderDate);
         }
     }
 }

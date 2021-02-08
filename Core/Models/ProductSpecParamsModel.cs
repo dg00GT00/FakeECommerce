@@ -17,12 +17,12 @@ namespace Core.Models
             set => _pageSize = value > MaxPageSize ? MaxPageSize : value;
         }
 
-        private string _search;
+        private string? _search;
 
-        public string Search
+        public string? Search
         {
             get => _search;
-            set => _search = value.ToLower();
+            set => _search = value?.ToLower();
         }
     }
 }

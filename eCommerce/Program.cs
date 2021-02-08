@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -44,7 +43,6 @@ namespace eCommerce
         private static async Task SeedDbIdentity(IServiceProvider services)
         {
             var userManager = services.GetRequiredService<UserManager<AppUser>>();
-            var config = services.GetRequiredService<IConfiguration>();
 
             var identityContext = services.GetRequiredService<AppIdentityDbContext>();
             await identityContext.Database.MigrateAsync();
@@ -66,20 +64,20 @@ namespace eCommerce
                     webBuilder.ConfigureKestrel((context, options) =>
                         {
                             // To use the "dotnet dev-certs tool" on windows when creating https certificates
-                            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)){
-                                // Configuration comes from user-secrets
-                                var certificateConfig = context.Configuration.GetSection("Certificate");
-                                var certFileName = certificateConfig["FileName"];
-                                var certPassword = certificateConfig["Password"];
-                                // Configure the Url and ports to bind to
-                                // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
-                                // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
-                                options.ListenLocalhost(5001, listenOptions =>
-                                {
-                                    listenOptions.UseHttps(certFileName, certPassword);
-                                    listenOptions.Protocols = HttpProtocols.Http2;
-                                });
-                            }
+                            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return;
+                            // Configuration comes from user-secrets
+                            var certificateConfig = context.Configuration.GetSection("Certificate");
+                            var certFileName = certificateConfig["FileName"];
+                            var certPassword = certificateConfig["Password"];
+                            // Configure the Url and ports to bind to
+                            // This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
+                            // overridden if you call UseIisIntegration() and host behind IIS/IIS Express
+                            options.ListenLocalhost(5001, listenOptions =>
+                            {
+                                listenOptions.UseHttps(certFileName, certPassword);
+                                // Should accept HTTP/1.1 and HTTP/2 due to Stripe CLI requirements
+                                listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                            });
                         })
                         .UseDefaultServiceProvider((context, options) =>
                         {

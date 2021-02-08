@@ -15,6 +15,7 @@ namespace eCommerce.Extensions
         /// Identity services to user implementation
         /// </summary>
         /// <param name="s">the service collection</param>
+        /// <param name="config">the default project configuration</param>
         /// <returns>the service collection</returns>
         public static IServiceCollection AddIdentityServices(this IServiceCollection s, IConfiguration config)
         {

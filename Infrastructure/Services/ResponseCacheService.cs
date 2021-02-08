@@ -15,7 +15,7 @@ namespace Infrastructure.Services
             _database = redis.GetDatabase();
         }
 
-        public async Task CacheResponseAsync(string cacheKey, object response, TimeSpan timeToLive)
+        public async Task CacheResponseAsync(string cacheKey, object? response, TimeSpan timeToLive)
         {
             if (response is null)
             {
@@ -30,7 +30,7 @@ namespace Infrastructure.Services
             await _database.StringSetAsync(cacheKey, serializedResponse, timeToLive);
         }
 
-        public async Task<string> GetCachedResponseAsync(string cacheKey)
+        public async Task<string?> GetCachedResponseAsync(string cacheKey)
         {
             var cachedResponse = await _database.StringGetAsync(cacheKey);
             if (cachedResponse.IsNullOrEmpty)

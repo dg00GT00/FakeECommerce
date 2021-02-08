@@ -36,7 +36,7 @@ namespace Infrastructure.Data.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetEntityWithSpecAsync(ISpecification<T> spec)
+        public async Task<T?> GetEntityWithSpecAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).AsNoTracking().FirstOrDefaultAsync();
         }

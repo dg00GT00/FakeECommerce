@@ -6,13 +6,15 @@ namespace Core.Dtos
     public class OrderToReturnDto
     {
         public int Id { get; set; }
-        public string BuyerEmail { get; set; }
-        public Address ShipToAddress { get; set; }
-        public string DeliveryMethod { get; set; }
+        public string? BuyerEmail { get; set; }
+        public Address? ShipToAddress { get; set; }
+        public string? DeliveryMethod { get; set; }
         public decimal ShippingPrice { get; set; }
-        public IReadOnlyList<OrderItemDto> OrderItems { get; set; }
+        public IReadOnlyList<OrderItemDto>? OrderItems { get; set; }
+
         public decimal Subtotal { get; set; }
-        public decimal Total { get; set; } // Mapped automatically by AutoMapper
-        public string Status { get; set; }
+
+        // public decimal Total { get; set; } // Mapped automatically by AutoMapper
+        public string? Status { get; set; }
     }
 }
