@@ -17,3 +17,8 @@
 #### Managing users
 
 - Use curl commands at `CurlCommands/AccountController` to test the functionalities
+
+#### Managing payment
+
+- Testing the payment functionality should be done via client application. See for
+  the [payment testing procedure](../eCommerce/Controllers/Testing Payment.md)
