@@ -4,6 +4,11 @@ using eCommerce.Errors;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Infrastructure.Services;
+using Infrastructure.Services.PaymentProcessingServices;
+using Infrastructure.Services.PaymentProcessingServices.Interfaces;
+using Infrastructure.Services.WebSocketsService;
+using Infrastructure.Services.WebSocketsService.Interfaces;
+using Infrastructure.Services.WebSocketsService.WebSocketsServiceMiddleware;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,20 +20,23 @@ namespace eCommerce.Extensions
         /// WARNING: This extension must be located at the end of services pipeline due to manipulation with
         /// ModelState behavior
         /// </summary>
-        /// <param name="s">The IServiceCollection instance</param>
+        /// <param name="service"></param>
         /// <returns>IServiceCollection</returns>
-        public static IServiceCollection AddApplicationServices(this IServiceCollection s)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection service)
         {
-            s.AddSingleton<IResponseCacheService, ResponseCacheService>();
-            s.AddScoped<IUnitOfWork, UnitOfWork>();
-            s.AddScoped<ITokenServices, TokenServices>();
-            s.AddScoped<IOrderService, OrderService>();
-            s.AddScoped<IPaymentService, PaymentService>();
-            s.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            s.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
-            s.AddScoped<IBasketRepository, BasketRepository>();
+            service.AddSingleton<IResponseCacheService, ResponseCacheService>();
+            service.AddSingleton<IPaymentProcessingService, PaymentProcessingService>();
+            service.AddSingleton<IPaymentWebSocketsService, PaymentWebSocketsService>();
+            service.AddScoped<WebSocketServiceMiddleware>();
+            service.AddScoped<IUnitOfWork, UnitOfWork>();
+            service.AddScoped<ITokenServices, TokenServices>();
+            service.AddScoped<IOrderService, OrderService>();
+            service.AddScoped<IPaymentService, PaymentService>();
+            service.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            service.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
+            service.AddScoped<IBasketRepository, BasketRepository>();
             // It reformat some possible Model state errors in order to complaint to ApiResponse implementation
-            s.Configure<ApiBehaviorOptions>(options =>
+            service.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>
                 {
@@ -43,7 +51,7 @@ namespace eCommerce.Extensions
                     return new BadRequestObjectResult(errorResponse);
                 };
             });
-            return s;
+            return service;
         }
     }
 }

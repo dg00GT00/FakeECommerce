@@ -1,16 +1,13 @@
-using System;
 using System.IO;
-using System.Threading.Tasks;
 using AutoMapper;
 using eCommerce.Extensions;
 using eCommerce.Helpers;
 using eCommerce.Middleware;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Infrastructure.Services.WebSocketsService.WebSocketsServiceMiddleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +40,7 @@ namespace eCommerce
             {
                 // Connection strings comes from User secrets
                 options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
-                options.EnableSensitiveDataLogging();
+                // options.EnableSensitiveDataLogging();
             });
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
@@ -86,6 +83,10 @@ namespace eCommerce
                     RequestPath = "/content"
                 });
             }
+
+            app.UseWebSockets();
+
+            app.UseMiddleware<WebSocketServiceMiddleware>();
 
             app.UseCors("CorsPolicy");
 
