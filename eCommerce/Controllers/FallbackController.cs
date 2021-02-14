@@ -8,7 +8,7 @@ namespace eCommerce.Controllers
         // GET for serving the client built client application
         public IActionResult Index()
         {
-            return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "index.html"), "text/HTML");
+            return PhysicalFile(Path.Combine(Directory.GetCurrentDirectory(), "Content", "index.html"), "text/HTML");
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "basketId": "basket1",
-  "deliveryMethodId": 2,
+  "deliveryMethodId": 3,
   "shipToAddress": {
     "firstName": "Bob",
     "lastName": "Bobbity",
