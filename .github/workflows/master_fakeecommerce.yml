@@ -34,3 +34,9 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_2fe7c75e7088466b813b67d6d4dcd311 }}
         package: ${{env.DOTNET_ROOT}}/myapp 
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: fakeecommerceBuild
+        path: ${{env.DOTNET_ROOT}}/myapp
