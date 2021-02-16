@@ -3,8 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>70a736e1-fe2c-46ee-966c-f84b6ae0b505</UserSecretsId>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.2"/>
+        <PackageReference Include="Azure.Identity" Version="1.4.0-beta.3"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3"/>
@@ -15,5 +18,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Content"/>
     </ItemGroup>
 </Project>

@@ -25,9 +25,9 @@ namespace eCommerce.Helpers
         {
             CreateMap<Product, ProductToReturnDto>()
                 .ForMember(dto => dto.ProductBrand,
-                    expression => expression.MapFrom(product => product.ProductBrand.Name))
+                    expression => expression.MapFrom(product => product.ProductBrand!.Name))
                 .ForMember(dto => dto.ProductType,
-                    expression => expression.MapFrom(product => product.ProductType.Name));
+                    expression => expression.MapFrom(product => product.ProductType!.Name));
         }
 
         /// <summary>

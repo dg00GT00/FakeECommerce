@@ -6,9 +6,9 @@ namespace eCommerce.Extensions
 {
     public static class SwaggerServiceExtensions
     {
-        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection s)
+        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection service)
         {
-            s.AddSwaggerGen(options =>
+            service.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "FakeeCommerce", Version = "v1"});
                 var securitySchema = new OpenApiSecurityScheme
@@ -31,7 +31,7 @@ namespace eCommerce.Extensions
                 };
                 options.AddSecurityRequirement(securityRequirement);
             });
-            return s;
+            return service;
         }
 
         public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
