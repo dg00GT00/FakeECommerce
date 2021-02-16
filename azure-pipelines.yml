@@ -11,6 +11,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  azureSubscription: 'Free Trial'
+  appName: 'fakeecommerce'
 
 steps:
   - task: UseDotNet@2
@@ -28,4 +30,20 @@ steps:
     displayName: 'dotnet build $(buildConfiguration)'
     inputs:
       command: 'build'
+      projects: '**/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
+
+  - task: DotNetCoreCLI@2
+      inputs:
+        commands: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)'
+
+  - task: AzureWebApp@1
+    displayName: 'Azure Web App Deploy'
+    inputs:
+      azureSubscription: '$(azureSubscription)'
+      appType: 'webAppLinux'
+      appName: '$(appName)'
+      package: '$(System.ArtifactsDirectory)/**/*.zip'
+      resourceGroupName: 'FakeECommerceResource'
