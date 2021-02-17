@@ -1,13 +1,13 @@
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Dtos;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Models;
 using eCommerce.Controllers;
-using eCommerce.Dtos;
 using eCommerce.Errors;
 using eCommerce.Helpers;
-using eCommerce.Models;
 using Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -23,7 +23,8 @@ namespace Tests.eCommerceTests.TestsControllers
         {
             _fixture = fixture;
             var productRepo = new GenericRepository<Product>(fixture.CreateContext());
-            _sut = DefaultProductArrange(productRepo);
+            var postRepo = new PostRepository<Product>(fixture.CreateContext());
+            _sut = DefaultProductArrange(productRepo, postRepo);
         }
 
         [Fact]
@@ -75,7 +76,8 @@ namespace Tests.eCommerceTests.TestsControllers
             Assert.Equal("Resource found, it was not", apiResponse.Message);
         }
 
-        private ProductsController DefaultProductArrange(IGenericRepository<Product> productRepo)
+        private ProductsController DefaultProductArrange(IGenericRepository<Product> productRepo,
+            IPostRepository<Product> postRepo)
         {
             var mapConfig = new MapperConfiguration(expression =>
             {
@@ -83,7 +85,7 @@ namespace Tests.eCommerceTests.TestsControllers
                 expression.AddProfile<MappingProfiles>();
             });
             var mapper = new Mapper(mapConfig);
-            return new ProductsController(productRepo, mapper);
+            return new ProductsController(productRepo, postRepo, mapper);
         }
     }
 }
