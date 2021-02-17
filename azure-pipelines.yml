@@ -26,9 +26,9 @@ steps:
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
-      feedToUse: 'select'
+      feedsToUse: 'select'
       vstsFeed: 'FakeECommerceDevops/FakeECommerceFeed'
-      includeNugetOrg: 'True'
+      includeNugetOrg: true
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build $(buildConfiguration)'
@@ -40,9 +40,9 @@ steps:
   - task: DotNetCoreCLI@2
     displayName: 'Publish the Project'
     inputs:
-      commands: 'publish'
-      publishWebProjects: 'True'
-      zipAfterPublish: 'True'
+      command: 'publish'
+      publishWebProjects: true
+      zipAfterPublish: true
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)'
 
   - task: AzureWebApp@1
