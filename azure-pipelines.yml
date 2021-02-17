@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  azureSubscription: 'Free Trial'
+  azureSubscription: '6d957450-1576-4980-8b9b-b92940635791'
   appName: 'fakeecommerce'
 
 steps:
