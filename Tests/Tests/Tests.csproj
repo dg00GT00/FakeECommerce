@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <UserSecretsId>4e5bdf0c-9af0-4f39-9b5e-7c9da7ba3dc6</UserSecretsId>
   </PropertyGroup>
