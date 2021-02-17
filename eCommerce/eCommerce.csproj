@@ -4,6 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>70a736e1-fe2c-46ee-966c-f84b6ae0b505</UserSecretsId>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.2"/>

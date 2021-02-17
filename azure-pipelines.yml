@@ -25,6 +25,9 @@ steps:
     displayName: 'Restore the project'
     inputs:
       command: 'restore'
+      projects: '**/*.csproj'
+      feedToUse: 'select'
+      vstsFeed: 'FakeEECommerceDevops/FakeEEComerceFeed'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build $(buildConfiguration)'
@@ -34,10 +37,11 @@ steps:
       arguments: '--configuration $(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
-      inputs:
-        commands: publish
-        publishWebProjects: True
-        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)'
+    displayName: 'Publish the Project'
+    inputs:
+      commands: 'publish'
+      publishWebProjects: 'True'
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)'
 
   - task: AzureWebApp@1
     displayName: 'Azure Web App Deploy'
