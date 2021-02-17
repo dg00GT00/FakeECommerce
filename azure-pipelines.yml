@@ -45,11 +45,10 @@ steps:
       zipAfterPublish: true
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)'
 
-  - task: AzureWebApp@1
-    displayName: 'Azure Web App Deploy'
+  - task: AzureRmWebAppDeployment@4
     inputs:
-      azureSubscription: '$(azureSubscription)'
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'FakeECommerceDeployConnection'
       appType: 'webAppLinux'
-      appName: '$(appName)'
-      package: '$(System.ArtifactsDirectory)/**/*.zip'
-      resourceGroupName: 'FakeECommerceResource'
+      WebAppName: 'fakeecommerce'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
