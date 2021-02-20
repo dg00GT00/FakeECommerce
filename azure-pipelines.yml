@@ -50,5 +50,5 @@ steps:
       ConnectionType: 'AzureRM'
       azureSubscription: 'FakeECommerceDeployConnection'
       appType: 'webAppLinux'
-      WebAppName: 'fakeecommerce'
+      WebAppName: '$(appName)'
       packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
