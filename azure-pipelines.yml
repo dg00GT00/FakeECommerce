@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  azureSubscription: 'FakeECommerceDeployConnection'
+  azureSubscription: 'fakeCommerce-connectionstring'
   appName: 'fakeecommerce'
 
 steps:
