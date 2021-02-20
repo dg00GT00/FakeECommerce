@@ -71,7 +71,7 @@ namespace eCommerce
                 {
                     webBuilder.ConfigureKestrel((context, options) =>
                         {
-                            // To use the "dotnet dev-certs tool" on windows when creating https certificates
+                            // Use the "dotnet dev-certs tool" on windows when creating https certificates
                             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return;
                             // Configuration comes from user-secrets
                             var certificateConfig = context.Configuration.GetSection("Certificate");
