@@ -36,7 +36,7 @@ namespace eCommerce.Helpers
 
         private string GetFileFullPath(string fileName)
         {
-            var rootDir = _hostEnvironment.IsProduction() ? _hostEnvironment.WebRootPath : "..";
+            var rootDir = _hostEnvironment.IsProduction() ? _hostEnvironment.ContentRootPath : "..";
             var seedDirectory = Path.GetFullPath(
                 Path.Combine(
                     rootDir,
