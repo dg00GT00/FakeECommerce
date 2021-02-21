@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e2ecad07.chunk.css",
+    "main.js": "/static/js/main.dbc3f553.chunk.js",
+    "main.js.map": "/static/js/main.dbc3f553.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4c295c48.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4c295c48.js.map",
+    "static/js/2.e238f6ff.chunk.js": "/static/js/2.e238f6ff.chunk.js",
+    "static/js/2.e238f6ff.chunk.js.map": "/static/js/2.e238f6ff.chunk.js.map",
+    "static/js/3.ea4026de.chunk.js": "/static/js/3.ea4026de.chunk.js",
+    "static/js/3.ea4026de.chunk.js.map": "/static/js/3.ea4026de.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.e2ecad07.chunk.css.map": "/static/css/main.e2ecad07.chunk.css.map",
+    "static/js/2.e238f6ff.chunk.js.LICENSE.txt": "/static/js/2.e238f6ff.chunk.js.LICENSE.txt",
+    "static/media/avatar1.7afafb31.webp": "/static/media/avatar1.7afafb31.webp",
+    "static/media/avatar2.09a7a416.webp": "/static/media/avatar2.09a7a416.webp",
+    "static/media/avatar3.b215600c.webp": "/static/media/avatar3.b215600c.webp",
+    "static/media/cartArrowDown.3461f850.svg": "/static/media/cartArrowDown.3461f850.svg",
+    "static/media/eCommerceBaseLogo.080da2b8.svg": "/static/media/eCommerceBaseLogo.080da2b8.svg",
+    "static/media/eCommerceFooter.1272ea9c.svg": "/static/media/eCommerceFooter.1272ea9c.svg",
+    "static/media/fakeCredictCard.298edd93.svg": "/static/media/fakeCredictCard.298edd93.svg",
+    "static/media/fakeCreditCardModified.c54146d4.webp": "/static/media/fakeCreditCardModified.c54146d4.webp",
+    "static/media/frontImage1.083997c4.webp": "/static/media/frontImage1.083997c4.webp",
+    "static/media/frontImage2.918e6022.webp": "/static/media/frontImage2.918e6022.webp",
+    "static/media/google-pay-primary-logo.2a25c474.svg": "/static/media/google-pay-primary-logo.2a25c474.svg",
+    "static/media/paypal-seeklogo.com.e84a2eb5.svg": "/static/media/paypal-seeklogo.com.e84a2eb5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4c295c48.js",
+    "static/js/2.e238f6ff.chunk.js",
+    "static/css/main.e2ecad07.chunk.css",
+    "static/js/main.dbc3f553.chunk.js"
+  ]
+}
