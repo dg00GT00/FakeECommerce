@@ -24,4 +24,22 @@
     <ItemGroup>
         <Folder Include="Content"/>
     </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\Infrastructure\Data\NewCourseSeedData\brands.json">
+            <Link>Infrastructure\Data\NewCourseSeedData\brands.json</Link>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Include="..\Infrastructure\Data\NewCourseSeedData\delivery.json">
+            <Link>Infrastructure\Data\NewCourseSeedData\delivery.json</Link>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Include="..\Infrastructure\Data\NewCourseSeedData\products.json">
+            <Link>Infrastructure\Data\NewCourseSeedData\products.json</Link>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Include="..\Infrastructure\Data\NewCourseSeedData\types.json">
+            <Link>Infrastructure\Data\NewCourseSeedData\types.json</Link>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
 </Project>

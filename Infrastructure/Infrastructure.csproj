@@ -26,12 +26,5 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Data\Migrations"/>
-        <Folder Include="Identity\Migrations"/>
     </ItemGroup>
-    <ItemGroup>
-        <Folder Update="Data\NewCourseSeedData">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Folder>
-    </ItemGroup>
-
 </Project>
