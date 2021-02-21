@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-20.04
 
 variables:
+  entryProject: 'eCommerce/eCommerce.csproj'
   buildConfiguration: 'Release'
   azureSubscription: 'fakeCommerce-connectionstring'
   appName: 'fakeecommerce'
@@ -25,7 +26,7 @@ steps:
     displayName: 'Restore the project'
     inputs:
       command: 'restore'
-      projects: '**/*.csproj'
+      projects: '$(entryProject)'
       feedsToUse: 'select'
       vstsFeed: 'FakeECommerceDevops/FakeECommerceFeed'
       includeNugetOrg: true
@@ -34,7 +35,7 @@ steps:
     displayName: 'dotnet build $(buildConfiguration)'
     inputs:
       command: 'build'
-      projects: '**/*.csproj'
+      projects: '$(entryProject)'
       arguments: '--configuration $(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
@@ -51,4 +52,4 @@ steps:
       azureSubscription: '$(azureSubscription)'
       appType: 'webAppLinux'
       WebAppName: '$(appName)'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+      package: '$(System.DefaultWorkingDirectory)/**/*.zip'
