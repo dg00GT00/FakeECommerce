@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Azure.Identity;
 using Core.Entities.Identity;
+using eCommerce.Helpers;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -21,14 +22,17 @@ namespace eCommerce
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                var hostEnvironment = services.GetRequiredService<IWebHostEnvironment>();
+
                 try
                 {
                     // Service locator block for products database seeding
-                    await SeedDbProducts(services, loggerFactory);
+                    await SeedDbProducts(services, loggerFactory, hostEnvironment);
                     // Service locator block for identity user seeding
                     await SeedDbIdentity(services);
                 }
@@ -52,11 +56,13 @@ namespace eCommerce
             await identitySeed.SeedUserAsync(userManager);
         }
 
-        private static async Task SeedDbProducts(IServiceProvider services, ILoggerFactory loggerFactory)
+        private static async Task SeedDbProducts(IServiceProvider services, ILoggerFactory loggerFactory,
+            IWebHostEnvironment hostEnvironment)
         {
             var context = services.GetRequiredService<StoreContext>();
             await context.Database.MigrateAsync();
-            await StoreContextSeed.SeedAsync(context, loggerFactory);
+            var contextSeed = new StoreContextSeed(hostEnvironment);
+            await contextSeed.SeedAsync(context, loggerFactory);
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -9,20 +9,22 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 using FakeProductsProvider.JsonServices;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Data
+namespace eCommerce.Helpers
 {
     public class StoreContextSeed
     {
-        // The seed directory path behaviors dynamically based on OS
-        private static readonly string SeedDirectory = Path.GetFullPath(
-                Path.Combine(
-                    "..", 
-                    Path.Join("Infrastructure", "Data", "NewCourseSeedData", Path.DirectorySeparatorChar.ToString())),
-                Directory.GetCurrentDirectory()
-            );
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+        public StoreContextSeed(IWebHostEnvironment hostEnvironment)
+        {
+            _hostEnvironment = hostEnvironment;
+        }
 
         private static Dictionary<string, Type> SeedDictionary { get; } = new Dictionary<string, Type>
         {
@@ -32,19 +34,25 @@ namespace Infrastructure.Data
             {"delivery.json", typeof(DeliveryMethod)}
         };
 
-        private static string GetFileFullPath(string fileName)
+        private string GetFileFullPath(string fileName)
         {
-            return new StringBuilder(SeedDirectory).Append(fileName).ToString();
+            var rootDir = _hostEnvironment.IsProduction() ? _hostEnvironment.WebRootPath : "..";
+            var seedDirectory = Path.GetFullPath(
+                Path.Combine(
+                    rootDir,
+                    Path.Join("Infrastructure", "Data", "NewCourseSeedData", Path.DirectorySeparatorChar.ToString())),
+                Directory.GetCurrentDirectory());
+            return new StringBuilder(seedDirectory).Append(fileName).ToString();
         }
 
-        private static async Task SeedEntities(StoreContext context)
+        private async Task SeedEntities(StoreContext context)
         {
             foreach (var (jsonFile, entityType) in SeedDictionary)
             {
                 var dbName = entityType.Name + "s";
                 var productProperty = context.GetType().GetTypeInfo().GetDeclaredProperty(dbName);
                 dynamic productEntity = productProperty?.GetValue(context);
-                if (!((IQueryable)productEntity)!.Any())
+                if (!((IQueryable) productEntity)!.Any())
                 {
                     var jsonData = await File.ReadAllTextAsync(GetFileFullPath(jsonFile));
                     var jsonSerializerType = typeof(JsonSerializerManager<>).MakeGenericType(entityType);
@@ -61,7 +69,7 @@ namespace Infrastructure.Data
             }
         }
 
-        public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
+        public async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
         {
             try
             {
