@@ -51,14 +51,18 @@ namespace eCommerce
             });
             services.AddIdentityServices(Configuration);
             services.AddSwaggerDocumentation();
-            services.AddCors(options =>
+            if (Env.IsDevelopment())
             {
-                options.AddPolicy("CorsPolicy", builder =>
+                services.AddCors(options =>
                 {
-                    // Cors to front-end React application
-                    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    options.AddPolicy("CorsPolicy", builder =>
+                    {
+                        // Cors to front-end React application
+                        builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    });
                 });
-            });
+            }
+
             // This service must be located at the end of the service pipeline
             services.AddApplicationServices();
         }
@@ -89,7 +93,10 @@ namespace eCommerce
 
             app.UseMiddleware<WebSocketServiceMiddleware>();
 
-            app.UseCors("CorsPolicy");
+            if (Env.IsDevelopment())
+            {
+                app.UseCors("CorsPolicy");
+            }
 
             app.UseAuthentication();
 
