@@ -23,6 +23,9 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
+        <Content Include="appsettings.json">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
         <Content Include="Content/**/*">
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>

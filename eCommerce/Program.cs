@@ -71,7 +71,8 @@ namespace eCommerce
                 {
                     if (!context.HostingEnvironment.IsProduction()) return;
                     var config = builder.Build();
-                    builder.AddAzureKeyVault(new Uri(config["KeyVaultId"]), new DefaultAzureCredential());
+                    builder.AddAzureKeyVault(new Uri(config.GetSection("KeyVaultId").Value),
+                        new DefaultAzureCredential());
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
