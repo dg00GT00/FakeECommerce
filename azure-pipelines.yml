@@ -8,7 +8,7 @@ trigger:
   - testBranch
 
 pool:
-  vmImage: ubuntu-20.04
+  vmImage: windows-latest
 
 variables:
   entryProject: 'eCommerce/eCommerce.csproj'
@@ -51,6 +51,6 @@ steps:
     inputs:
       ConnectionType: 'AzureRM'
       azureSubscription: '$(azureSubscription)'
-      appType: 'webAppLinux'
+      appType: 'webApp'
       WebAppName: '$(appName)'
       package: '$(System.DefaultWorkingDirectory)/**/*.zip'
