@@ -20,7 +20,7 @@ namespace eCommerce.Controllers
 
         // This constant string has valid of 90 days
         // Secret to use with stripe
-        private const string WhSecret = "whsec_QMu3UTXZ3CaCXJuZCEex5OAQ4QjPrdn3";
+        private const string WhSecret = "whsec_0oAhMbKjCSRNwTTmuFUmP3kPYxSlOC7Q";
 
         public PaymentsController(
             IPaymentService paymentService,
