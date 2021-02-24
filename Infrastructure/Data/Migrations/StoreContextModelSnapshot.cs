@@ -52,16 +52,22 @@ namespace Infrastructure.Data.Migrations
                     .HasAnnotation("Npgsql:ValueGenerationStrategy",
                         NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                b.Property<string>("BuyerEmail")
+                b.Property<string>("BasketId")
+                    .IsRequired()
                     .HasColumnType("text");
 
-                b.Property<int?>("DeliveryMethodId")
+                b.Property<string>("BuyerEmail")
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                b.Property<int>("DeliveryMethodId")
                     .HasColumnType("integer");
 
                 b.Property<DateTimeOffset>("OrderDate")
                     .HasColumnType("timestamp with time zone");
 
                 b.Property<string>("PaymentIntentId")
+                    .IsRequired()
                     .HasColumnType("text");
 
                 b.Property<string>("Status")
@@ -177,7 +183,9 @@ namespace Infrastructure.Data.Migrations
             {
                 b.HasOne("Core.Entities.OrderAggregate.DeliveryMethod", "DeliveryMethod")
                     .WithMany()
-                    .HasForeignKey("DeliveryMethodId");
+                    .HasForeignKey("DeliveryMethodId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
                 b.OwnsOne("Core.Entities.OrderAggregate.Address", "ShipToAddress", b1 =>
                 {
@@ -188,21 +196,27 @@ namespace Infrastructure.Data.Migrations
                             NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b1.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<string>("ZipCode")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.HasKey("OrderId");
@@ -230,12 +244,14 @@ namespace Infrastructure.Data.Migrations
                             NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b1.Property<string>("PictureUrl")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.Property<int>("ProductItemId")
                         .HasColumnType("integer");
 
                     b1.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b1.HasKey("OrderItemId");
