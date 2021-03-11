@@ -10,6 +10,7 @@ using Core.Entities;
 using Core.Entities.OrderAggregate;
 using FakeProductsProvider.JsonServices;
 using Infrastructure.Data;
+using Infrastructure.DataExtensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Hosting;
@@ -64,7 +65,7 @@ namespace eCommerce.Helpers
                         productEntity!.Add(item);
                     }
 
-                    await context.SaveChangesAsync();
+                    await context.SqlServerSaveChangesAsync(dbName);
                 }
             }
         }

@@ -3,7 +3,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Infrastructure.Data.Migrations
 {
@@ -15,29 +15,29 @@ namespace Infrastructure.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Dev")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("DeliveryTime")
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Description")
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<decimal>("Price")
                     .HasColumnType("decimal(18,2)");
 
                 b.Property<string>("ShortName")
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.HasKey("Id");
 
@@ -48,34 +48,34 @@ namespace Infrastructure.Data.Migrations
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("BasketId")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("BuyerEmail")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<int>("DeliveryMethodId")
-                    .HasColumnType("integer");
+                    .HasColumnType("int");
 
                 b.Property<DateTimeOffset>("OrderDate")
-                    .HasColumnType("timestamp with time zone");
+                    .HasColumnType("datetimeoffset");
 
                 b.Property<string>("PaymentIntentId")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Status")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<decimal>("Subtotal")
-                    .HasColumnType("numeric");
+                    .HasColumnType("decimal(18,2)");
 
                 b.HasKey("Id");
 
@@ -88,18 +88,18 @@ namespace Infrastructure.Data.Migrations
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<int?>("OrderId")
-                    .HasColumnType("integer");
+                    .HasColumnType("int");
 
                 b.Property<decimal>("Price")
                     .HasColumnType("decimal(18,2)");
 
                 b.Property<int>("Quantity")
-                    .HasColumnType("integer");
+                    .HasColumnType("int");
 
                 b.HasKey("Id");
 
@@ -112,31 +112,31 @@ namespace Infrastructure.Data.Migrations
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("Description")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Name")
                     .IsRequired()
-                    .HasColumnType("character varying(100)")
+                    .HasColumnType("nvarchar(100)")
                     .HasMaxLength(100);
 
                 b.Property<string>("PictureUrl")
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<decimal>("Price")
                     .HasColumnType("decimal(18,2)");
 
                 b.Property<int>("ProductBrandId")
-                    .HasColumnType("integer");
+                    .HasColumnType("int");
 
                 b.Property<int>("ProductTypeId")
-                    .HasColumnType("integer");
+                    .HasColumnType("int");
 
                 b.HasKey("Id");
 
@@ -151,12 +151,12 @@ namespace Infrastructure.Data.Migrations
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("Name")
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.HasKey("Id");
 
@@ -167,12 +167,12 @@ namespace Infrastructure.Data.Migrations
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
-                    .HasColumnType("integer")
-                    .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                        NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
 
                 b.Property<string>("Name")
-                    .HasColumnType("text");
+                    .HasColumnType("nvarchar(max)");
 
                 b.HasKey("Id");
 
@@ -191,33 +191,33 @@ namespace Infrastructure.Data.Migrations
                 {
                     b1.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                            SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b1.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<string>("Street")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<string>("ZipCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.HasKey("OrderId");
 
@@ -239,20 +239,20 @@ namespace Infrastructure.Data.Migrations
                 {
                     b1.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy",
-                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                            SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b1.Property<string>("PictureUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.Property<int>("ProductItemId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b1.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b1.HasKey("OrderItemId");
 
