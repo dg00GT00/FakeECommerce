@@ -13,7 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using StackExchange.Redis;
 
 namespace eCommerce
 {
@@ -32,11 +31,11 @@ namespace eCommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IConnectionMultiplexer>(provider =>
-            {
-                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
-                return ConnectionMultiplexer.Connect(configuration);
-            });
+            // services.AddSingleton<IConnectionMultiplexer>(provider =>
+            // {
+            //     var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+            //     return ConnectionMultiplexer.Connect(configuration);
+            // });
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(options =>
             {
