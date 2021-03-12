@@ -50,8 +50,8 @@ namespace eCommerce.Helpers
         {
             foreach (var (jsonFile, entityType) in SeedDictionary)
             {
-                var dbName = entityType.Name + "s";
-                var productProperty = context.GetType().GetTypeInfo().GetDeclaredProperty(dbName);
+                var tableName = entityType.Name + "s";
+                var productProperty = context.GetType().GetTypeInfo().GetDeclaredProperty(tableName);
                 dynamic productEntity = productProperty?.GetValue(context);
                 if (!((IQueryable) productEntity)!.Any())
                 {
@@ -65,7 +65,7 @@ namespace eCommerce.Helpers
                         productEntity!.Add(item);
                     }
 
-                    await context.SqlServerSaveChangesAsync(dbName);
+                    await context.SqlServerSaveChangesAsync(tableName);
                 }
             }
         }
