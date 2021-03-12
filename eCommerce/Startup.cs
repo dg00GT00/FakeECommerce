@@ -40,13 +40,13 @@ namespace eCommerce
             services.AddDbContext<StoreContext>(options =>
             {
                 // Connection strings comes from User secrets
-                options.UseNpgsql(Configuration.GetConnectionString("DevDatabase"));
+                options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
                 // options.EnableSensitiveDataLogging();
             });
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
                 // Connection strings comes from User secrets
-                options.UseNpgsql(Configuration.GetConnectionString("IdentityDatabase"));
+                options.UseSqlServer(Configuration.GetConnectionString("DevDatabase"));
             });
             services.AddIdentityServices(Configuration);
             services.AddSwaggerDocumentation();
