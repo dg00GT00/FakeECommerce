@@ -11,9 +11,9 @@ namespace Infrastructure.DataExtensions
             try
             {
                 var dbName = c.Database.GetDbConnection().Database;
-                await c.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {dbName}.dbo.{tableName} OFF");
+                await c.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {dbName}.Dev.{tableName} ON");
                 await c.SaveChangesAsync();
-                await c.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {dbName}.dbo.{tableName} ON");
+                await c.Database.ExecuteSqlRawAsync($"SET IDENTITY_INSERT {dbName}.Dev.{tableName} OFF");
             }
             finally
             {
