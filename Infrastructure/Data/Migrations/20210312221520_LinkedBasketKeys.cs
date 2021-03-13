@@ -3,12 +3,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class ChangedOrderSubTotalPrecision : Migration
+    public partial class LinkedBasketKeys : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "Dev");
+
+            migrationBuilder.CreateTable(
+                name: "Basket",
+                schema: "Dev",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BasketId = table.Column<string>(nullable: false),
+                    DeliveryMethodId = table.Column<int>(nullable: true),
+                    ClientSecret = table.Column<string>(nullable: true),
+                    PaymentIntentId = table.Column<string>(nullable: true),
+                    ShippingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Basket", x => x.Id);
+                    table.UniqueConstraint("AK_Basket_BasketId", x => x.BasketId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "DeliveryMethods",
@@ -45,6 +64,33 @@ namespace Infrastructure.Data.Migrations
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table => { table.PrimaryKey("PK_ProductTypes", x => x.Id); });
+
+            migrationBuilder.CreateTable(
+                name: "BasketItem",
+                schema: "Dev",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    PictureUrl = table.Column<string>(nullable: true),
+                    Brand = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    CustomerBasketId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BasketItem_Basket_CustomerBasketId",
+                        column: x => x.CustomerBasketId,
+                        principalSchema: "Dev",
+                        principalTable: "Basket",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Orders",
@@ -139,6 +185,12 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_BasketItem_CustomerBasketId",
+                schema: "Dev",
+                table: "BasketItem",
+                column: "CustomerBasketId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 schema: "Dev",
                 table: "OrderItems",
@@ -166,11 +218,19 @@ namespace Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BasketItem",
+                schema: "Dev");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems",
                 schema: "Dev");
 
             migrationBuilder.DropTable(
                 name: "Products",
+                schema: "Dev");
+
+            migrationBuilder.DropTable(
+                name: "Basket",
                 schema: "Dev");
 
             migrationBuilder.DropTable(

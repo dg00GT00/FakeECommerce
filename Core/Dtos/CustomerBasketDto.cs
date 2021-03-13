@@ -5,8 +5,9 @@ namespace Core.Dtos
 {
     public class CustomerBasketDto
     {
-        [Required] public string? Id { get; set; }
+        public int Id { get; set; }
         public List<BasketItemDto>? Items { get; set; }
+        [Required] public string? UserEmail { get; set; }
         public int? DeliveryMethodId { get; set; }
         public string? ClientSecret { get; set; }
         public string? PaymentIntentId { get; set; }

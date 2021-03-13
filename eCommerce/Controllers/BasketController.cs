@@ -22,7 +22,7 @@ namespace eCommerce.Controllers
         public async Task<ActionResult<CustomerBasket>> GetBasketById([FromQuery] string id)
         {
             var basket = await _basketRepository.GetBasketAsync(id);
-            return Ok(basket ?? new CustomerBasket(id));
+            return Ok(basket ?? new CustomerBasket {UserEmail = id});
         }
 
         [HttpPost]
@@ -30,7 +30,7 @@ namespace eCommerce.Controllers
         {
             var customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
             var updatedBasket = await _basketRepository.UpdateBasketAsync(customerBasket);
-            return CreatedAtAction(nameof(GetBasketById), new {updatedBasket.Id}, updatedBasket);
+            return CreatedAtAction(nameof(GetBasketById), new {updatedBasket.UserEmail}, updatedBasket);
         }
 
         [HttpDelete]

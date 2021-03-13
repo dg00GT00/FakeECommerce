@@ -19,6 +19,73 @@ namespace Infrastructure.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Core.Entities.BasketItem", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Brand")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int?>("CustomerBasketId")
+                    .HasColumnType("int");
+
+                b.Property<string>("PictureUrl")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<decimal>("Price")
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<int>("ProductId")
+                    .HasColumnType("int");
+
+                b.Property<string>("ProductName")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
+
+                b.Property<string>("Type")
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("CustomerBasketId");
+
+                b.ToTable("BasketItem");
+            });
+
+            modelBuilder.Entity("Core.Entities.CustomerBasket", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("ClientSecret")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int?>("DeliveryMethodId")
+                    .HasColumnType("int");
+
+                b.Property<string>("PaymentIntentId")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<decimal>("ShippingPrice")
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<string>("UserEmail")
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("Id");
+
+                b.ToTable("Basket");
+            });
+
             modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
             {
                 b.Property<int>("Id")
@@ -177,6 +244,14 @@ namespace Infrastructure.Data.Migrations
                 b.HasKey("Id");
 
                 b.ToTable("ProductTypes");
+            });
+
+            modelBuilder.Entity("Core.Entities.BasketItem", b =>
+            {
+                b.HasOne("Core.Entities.CustomerBasket", null)
+                    .WithMany("Items")
+                    .HasForeignKey("CustomerBasketId")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>

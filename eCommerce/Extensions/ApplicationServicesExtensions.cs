@@ -34,7 +34,7 @@ namespace eCommerce.Extensions
             service.AddScoped<IPaymentService, PaymentService>();
             service.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             service.AddScoped(typeof(IPostRepository<>), typeof(PostRepository<>));
-            service.AddScoped<IBasketRepository, BasketRepository>();
+            service.AddScoped<IBasketRepository, SqlServerBasketRepository>();
 
             // It reformat some possible Model state errors in order to complaint to ApiResponse implementation
             service.Configure<ApiBehaviorOptions>(options =>

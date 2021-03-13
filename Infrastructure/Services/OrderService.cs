@@ -31,7 +31,7 @@ namespace Infrastructure.Services
             if (basket == null) return null;
             foreach (var item in basket.Items)
             {
-                var productItem = await _unitOfWork.Repository<Product>().GetEntityByIdAsync(item.Id);
+                var productItem = await _unitOfWork.Repository<Product>().GetEntityByIdAsync(item.ProductId);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
                 items.Add(orderItem);

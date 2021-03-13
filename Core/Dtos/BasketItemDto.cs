@@ -5,6 +5,7 @@ namespace Core.Dtos
     public class BasketItemDto
     {
         [Required] public int Id { get; set; }
+        [Required] public int ProductId { get; set; }
         [Required] public string? ProductName { get; set; }
 
         [Required, Range(0.1, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
