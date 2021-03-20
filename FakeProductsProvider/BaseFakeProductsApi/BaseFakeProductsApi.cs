@@ -12,7 +12,7 @@ namespace FakeProductsProvider.BaseFakeProductsApi
     /// </summary>
     public abstract class BaseFakeProductsApi
     {
-        public string BaseUri { get; } = "https://fakestoreapi.com";
+        public string BaseUri { get; } = "https://fakestoreapi.herokuapp.com";
 
         private string GenerateUri(IEnumerable<string> pathArray)
         {
